@@ -1,0 +1,177 @@
+.Container {
+  /* background: #f9ffff; */
+  /* background-origin: border-box; */
+  /* border: #555454 4px solid; */
+
+  /* background-size: 100%; */
+  /* 20x20 px grid */
+  /* height: 100vh; */
+  display: flex;
+  width: 100vw;
+  /* height: 100vh; */
+  border: 2px solid blue;
+  /* opacity: 0.8; */
+  /* justify-content: space-around;
+    align-items: flex-end; */
+}
+
+Particles {
+  height: 100vh !important;
+  width: 100vw !important;
+  z-index: 10 !important;
+}
+
+.corner {
+  opacity: 0.5;
+  background-size: 100%;
+  background-image: url("../img/corner.png");
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  height: calc(20vh - 5px);
+  width: 10vw;
+  z-index: 0;
+}
+img {
+  opacity: 1;
+  height: 180px;
+  width: 180px;
+  margin: 5px 0;
+  padding: 0 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /*margin: 0;
+    padding: 15px 15px; */
+  z-index: 2;
+}
+.left {
+  opacity: 0.5;
+  background-size: 150% 20vh;
+  background-repeat: repeat-y;
+  background-image: url("../img/left.png");
+  position: absolute;
+  top: 20vh;
+  /* left: -9px; */
+  height: calc(100% - 20vh);
+  width: 6.5vw;
+  z-index: 0;
+}
+.top {
+  opacity: 0.5;
+  background-size: 20vw 120%;
+  background-repeat: repeat-x;
+  background-image: url("../img/top.png");
+  position: absolute;
+  top: 0px;
+  left: 10vw;
+  width: calc(100% - 10vw);
+  height: 20vh;
+  z-index: 0;
+}
+
+/* .treasureBox {
+    height: 70vh;
+    width: 17vw;
+    background: rgb(196, 196, 196, 0.65);
+    border-top-left-radius: 10vw;
+    border-top-right-radius: 10vw;
+    border: 3vw solid #555454;
+    border-bottom: 10px solid rgb(56, 55, 55, 0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5vh;
+    box-shadow: 20px 0px 23px 10px rgba(0, 0, 0, 0.47);
+    overflow: auto;
+  } */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.loggedIn {
+  justify-content: flex-start;
+  font-family: "Risque", cursive;
+  font-size: 10px;
+}
+
+.loggedIn h1 {
+  margin-top: 30%;
+}
+
+.loggedIn h1::first-letter {
+  text-transform: capitalize;
+}
+
+.treasureBox img {
+  max-height: 100px;
+  margin: 10px;
+}
+
+.treasureBox p {
+  text-shadow: none;
+  font-size: 22px;
+  padding: 0 12px;
+  color: white;
+}
+
+.Container button {
+  background: #219653;
+  font-size: 1.5em;
+  width: 75%;
+  line-height: 1em;
+  padding: 10px;
+  border: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+  box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.75);
+}
+
+.addTreasure {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.addTreasure button {
+  color: #f5cc59;
+  font-family: "Risque", cursive;
+  padding: 4px;
+}
+
+/* ---- stats.js ---- */
+
+.count-particles {
+  background: #000022;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 80px;
+  color: #13e8e9;
+  font-size: 0.8em;
+  text-align: left;
+  text-indent: 4px;
+  line-height: 14px;
+  padding-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.js-count-particles {
+  font-size: 1.1em;
+}
+
+#stats,
+.count-particles {
+  -webkit-user-select: none;
+}
+
+#stats {
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.count-particles {
+  border-radius: 0 0 3px 3px;
+}

@@ -77,11 +77,9 @@ export default class Header extends Component {
     const { user } = this.props;
     return (
       <div className="Header">
-        <div className="nav" />
         <div className="title">Software Development</div>
         {this.state.loggedIn ? (
           <div className="welcomeMessage">
-            <div className="currUser">{username}</div>
             {/* <button type="submit" onClick={this.logout}>
               Logout
             </button> */}
@@ -94,12 +92,10 @@ export default class Header extends Component {
             {this.state.burger ? (
               <div className="dropDown">
                 <hr />
-                <hr />
-                <hr />
-                <hr />
-                <hr /> DROP DOOOO~OOOOWN
+                <div className="currUser">{username}</div>
+
                 <div className="dropBot">
-                  yo
+                  DROP DOOOO~OOOOWN
                   <hr />
                 </div>
               </div>
@@ -108,18 +104,20 @@ export default class Header extends Component {
         ) : (
           <div className="nav">
             <div className="loginContainer">
-              <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={e => this.handleUsernameInput(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={e => this.handlePasswordInput(e.target.value)}
-              />
+              <div className="login">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={e => this.handleUsernameInput(e.target.value)}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={e => this.handlePasswordInput(e.target.value)}
+                />
+              </div>
               {/* <div className="adminCheck">
               <input
                 type="checkbox"
@@ -128,6 +126,7 @@ export default class Header extends Component {
               />{" "}
               <span> Admin </span>
             </div> */}
+
               <button onClick={this.login}>Log In</button>
               <button onClick={this.register} id="reg">
                 Register
