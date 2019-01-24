@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const signup = async (req, res) => {
+const register = async (req, res) => {
   const db = req.app.get("db");
 
   const user = await db.get_user([req.body.username]);
@@ -56,7 +56,7 @@ const adminOnly = (req, res) => {
 };
 
 module.exports = {
-  signup,
+  register,
   login,
   adminOnly,
   logout

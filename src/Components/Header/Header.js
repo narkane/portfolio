@@ -8,7 +8,10 @@ export default class Header extends Component {
     this.state = {
       username: "",
       password: "",
-      isAdmin: false
+      isAdmin: false,
+      loggedIn: false,
+
+      burger: false
     };
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
@@ -29,57 +32,107 @@ export default class Header extends Component {
   }
 
   login() {
+    axios
+      .post("/auth/login", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(resp => {
+        console.log(resp);
+        if ((resp.status = 200)) {
+          this.setState({ loggedIn: true });
+        }
+      });
     // axios POST to /auth/login here
   }
 
   register() {
-    axios.post("/auth/register").
+    axios
+      .post("/auth/register", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(resp => {
+        console.log(resp);
+      });
     // axios POST to /auth/register here
   }
 
   logout() {
+    axios.get("/auth/logout").then(resp => {
+      console.log(resp);
+      if ((resp.status = 200)) {
+        this.setState({ loggedIn: false });
+      }
+    });
     // axios GET to /auth/logout here
   }
+
+  toggleBurg = () => {
+    this.setState({ burger: !this.state.burger });
+  };
 
   render() {
     const { username, password } = this.state;
     const { user } = this.props;
     return (
       <div className="Header">
-        <div className="title">Dragon's Lair</div>
-        {user.username ? (
+        <div className="nav" />
+        <div className="title">Software Development</div>
+        {this.state.loggedIn ? (
           <div className="welcomeMessage">
-            <h4>{user.username}, welcome to the dragon's lair</h4>
-            <button type="submit" onClick={this.logout}>
+            <div className="currUser">{username}</div>
+            {/* <button type="submit" onClick={this.logout}>
               Logout
-            </button>
+            </button> */}
+
+            <div className="burgerbox" onClick={this.toggleBurg}>
+              {" "}
+              &#9776;
+            </div>
+
+            {this.state.burger ? (
+              <div className="dropDown">
+                <hr />
+                <hr />
+                <hr />
+                <hr />
+                <hr /> DROP DOOOO~OOOOWN
+                <div className="dropBot">
+                  yo
+                  <hr />
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : (
-          <div className="loginContainer">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={e => this.handleUsernameInput(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => this.handlePasswordInput(e.target.value)}
-            />
-            <div className="adminCheck">
+          <div className="nav">
+            <div className="loginContainer">
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={e => this.handleUsernameInput(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => this.handlePasswordInput(e.target.value)}
+              />
+              {/* <div className="adminCheck">
               <input
                 type="checkbox"
                 id="adminCheckbox"
                 onChange={() => this.toggleAdmin()}
               />{" "}
               <span> Admin </span>
+            </div> */}
+              <button onClick={this.login}>Log In</button>
+              <button onClick={this.register} id="reg">
+                Register
+              </button>
             </div>
-            <button onClick={this.login}>Log In</button>
-            <button onClick={this.register} id="reg">
-              Register
-            </button>
           </div>
         )}
       </div>

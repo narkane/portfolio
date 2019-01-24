@@ -1,11 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Risque');
-
+@import url("https://fonts.googleapis.com/css?family=Risque");
 
 .App {
   text-align: center;
-  text-shadow: 1px 1px rgba(0,0,0,0.7);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
 }
 
-input{
+.nav {
+  z-index: 1;
+}
+.body {
+  z-index: 0;
+}
+
+conta input {
   border: none;
 }

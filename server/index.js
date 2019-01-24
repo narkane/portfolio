@@ -25,7 +25,8 @@ app.use(
   })
 );
 
-app.get("/auth/login", ac.login);
+app.get("/auth/logout", ac.logout);
+app.post("/auth/login", ac.login);
 app.post("/auth/register", ac.register);
 
 app.listen(PORT, () => console.log(` - Listening on port (${PORT}) - `));

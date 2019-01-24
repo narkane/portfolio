@@ -1,10 +1,47 @@
 .Container {
-  /* background: #6B6666; */
-  background: url(lair.png);
+  /* background: #f9ffff; */
+  border: #555454 4px solid;
+  background: url("../../img/grid.jpg");
+  background-size: 640px;
+  /* 20x20 px grid */
   height: 92vh;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+}
+
+.corner {
+  background-size: 100%;
+  background-image: url("../../img/corner.png");
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 150px;
+  width: 150px;
+  z-index: 0;
+}
+img {
+  height: 190px;
+  width: 190px;
+  margin: 5px 0;
+  padding: 0 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /*margin: 0;
+  padding: 15px 15px; */
+  z-index: 2;
+}
+.left {
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-image: url("../../img/left.png");
+  position: absolute;
+  top: 150px;
+  left: 0px;
+  height: 100%;
+  width: 150px;
+  z-index: 0;
 }
 
 .treasureBox {
@@ -30,7 +67,7 @@
 
 .loggedIn {
   justify-content: flex-start;
-  font-family: 'Risque', cursive;
+  font-family: "Risque", cursive;
   font-size: 10px;
 }
 
@@ -72,7 +109,7 @@
 }
 
 .addTreasure button {
-  color: #F5CC59;
-  font-family: 'Risque', cursive;
+  color: #f5cc59;
+  font-family: "Risque", cursive;
   padding: 4px;
 }

@@ -1,52 +1,130 @@
+* {
+  font-family: "Time";
+  /* z-index: 2; */
+}
+
 .Header {
-  background: #383737;
-  padding: 8px 40px 8px 40px;
+  background: #e9eeee;
+  /* margin: 100px 0 0 0; */
+  padding: 0px 40px 0px 40px;
   height: 8vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* z-index: 1; */
 }
 
 .title {
-  color: #F5CC59;
-  font-family: 'Risque', cursive;
+  padding: 10px 0 0 150px;
+  color: #eee;
+  font-weight: 600;
+  font-family: "TimeBold", cursive;
   font-size: 48px;
   line-height: 55px;
+  text-shadow: 3px 3px 10px #000;
+  z-index: 2;
 }
 
 .loginContainer {
+  height: 8vh;
+  width: 100%;
+  /* padding: 40px 0 0 0; */
+  /* margin: auto; */
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .Header input,
 .Header button {
-  margin: 0px 0px 0px 20px;
+  margin: 0px 10px 0px 10px;
+  border-color: black;
+  border-radius: 2px;
 }
 
-.Header button {
-  background: #219653;
-  color: #F5CC59;
-  border: none;
-  padding: 10px 20px 10px 20px;
-  font-family: 'Risque', cursive;
+.Header button,
+.currUser {
+  background: black;
+  /* border-color: white; */
+  color: whitesmoke;
+  /* border: none; */
+  padding: 5px 20px 5px 20px;
+  font-family: "TimeBold", cursive;
   font-size: 1em;
   font-weight: bold;
   letter-spacing: 2px;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.7)
+  text-shadow: 2px 2px rgba(255, 0, 0, 0.75);
+}
+
+.currUser {
+  position: absolute;
+  right: 75px;
+  background: none;
+  background-image: url("../../img/name.png");
+  text-shadow: 1px 1px 1px #fff;
+  color: #000;
+  /* border: 1px double #000; */
+  /* margin: 0px 80px 0px 0px; */
+  height: 22px;
+  width: 160px;
+  z-index: 2;
+}
+
+.dropDown {
+  background: #e9eeee;
+  position: absolute;
+  top: 46px;
+  right: 36px;
+  border: 1px solid #aaaacc;
+  padding: 0px 10px 0 10px;
+  height: 348px;
+  width: 259px;
+  animation: drop 1s linear;
+  font-weight: bold;
+  z-index: 0;
+}
+.dropBot {
+  font-weight: 100;
+  font-size: 9pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: flex-start;
+  padding: 0 0 4px 0;
 }
 
 .Header input {
+  /* border-width: 0px; */
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000;
+  font-weight: 1000;
+  background: #890000;
   height: 28px;
   width: 10vw;
   text-align: center;
 }
-
-#reg {
-  background: #F5CC59;
-  color: #219653;
+.Header input:-webkit-autofill,
+.Header input:-webkit-autofill:hover,
+.Header input:-webkit-autofill:focus {
+  background: #000000;
 }
+
+.nav {
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-image: url("../../img/top.png");
+  position: absolute;
+  top: 0px;
+  left: 150px;
+  width: calc(100vw - 150px);
+  height: 150px;
+  z-index: 1;
+}
+/* #reg {
+  background: ;
+  color: white;
+} */
 
 .adminCheck {
   color: whitesmoke;
@@ -58,19 +136,41 @@
   font-size: 0.75em;
 }
 
-#adminCheckbox {
-  width: 20px;
-  margin: auto;
-  margin-bottom: -5px;
+.burgerbox {
+  font-size: 16pt;
+  padding: 4px 0 0 0;
+  z-index: 1;
+}
+.burgerbox:hover {
+  transform: scale(1.5);
 }
 
 .welcomeMessage {
-  color: whitesmoke;
+  /* color: whitesmoke; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  /* z-index: 0; */
 }
 
 .welcomeMessage ::first-letter {
   text-transform: capitalize;
+}
+
+@font-face {
+  font-family: "Time";
+  src: url("../../fonts/timeburnernormal.ttf") format("truetype");
+}
+@font-face {
+  font-family: "TimeBold";
+  src: url("../../fonts/timeburnerbold.ttf") format("truetype");
+}
+
+@keyframes drop {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 410px;
+  }
 }
