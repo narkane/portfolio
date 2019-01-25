@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Particles from "react-particles-js";
 
 import logo from "../img/dms.png";
+import logo_s from "../img/dms_s.png";
+import logo_t from "../img/dms_t.png";
+import logo_b from "../img/dms_b.png";
 
 class ParticlesContainer extends Component {
   render() {
@@ -237,7 +240,16 @@ class ParticlesContainer extends Component {
           }}
         />
         <div className="corner" />
-        <img src={logo} />
+        <div className="scene">
+          <div className="cube">
+            <img src={logo} className="front" />
+            <img src={logo_s} className="side" />
+            <img src={logo} className="back" />
+            <img src={logo_s} className="side2" />
+            <img src={logo_t} className="top_s" />
+            <img src={logo_b} className="bot" />
+          </div>
+        </div>
         <div className="top" />
         <div className="left" />
       </div>

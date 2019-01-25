@@ -15,14 +15,23 @@
 }
 
 .title {
-  padding: 15px 0px 0 150px;
+  padding: 0px 0px 0 0px;
   color: #eee;
   font-weight: 600;
   font-family: "TimeBold", cursive;
-  font-size: 48px;
-  line-height: 55px;
-  text-shadow: 4px 4px 10px #000;
+  font-size: 36px;
+  /* line-height: 55px; */
+  text-shadow: 4px 4px 10px rgb(205, 200, 100);
   z-index: 2;
+
+  -webkit-mask-image: linear-gradient(
+    to right bottom,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.1)
+      /* ,
+    linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.05)) */
+  );
+  -webkit-mask-size: 200%, 100%;
 }
 
 .loginContainer {

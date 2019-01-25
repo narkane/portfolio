@@ -38,19 +38,71 @@ canvas {
   width: 10vw;
   z-index: 0;
 }
-img {
+
+.scene {
+  opacity: 0.75;
+  position: absolute;
+  bottom: 20px;
+  right: 60px;
+  /* margin: 0 0 0 30px; */
+  width: 100px;
+  height: 100px;
+  perspective: 175px;
+}
+.cube {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  /* transform: translateZ(-100px); */
+  animation: rotate3d 16s linear infinite;
+}
+
+.top_s,
+.bot,
+.front,
+.back,
+.side,
+.side2 {
   opacity: 1;
-  height: 180px;
-  width: 180px;
-  margin: 5px 0;
+  height: 125%;
+  width: 135%;
+  /* margin: 5px 0; */
   padding: 0 0;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  /* top: 0px;
+  left: 0px; */
   /*margin: 0;
     padding: 15px 15px; */
   z-index: 2;
 }
+
+.front {
+  transform: rotateY(0deg) translateZ(40px);
+}
+.back {
+  transform: rotateY(180deg) translateZ(40px);
+}
+.side {
+  transform: rotateY(90deg) translateZ(40px);
+  /* , translateZ(100px); */
+  /* width: 73px; */
+  /* calc((9 / 20) * 140px); */
+  /* padding: 0 54px; */
+}
+.side2 {
+  transform: rotateY(-90deg) translateZ(40px);
+}
+.top_s {
+  transform: rotateX(90deg) translateZ(40px);
+}
+.bot {
+  transform: rotateX(-90deg) translateZ(40px);
+}
+
 .left,
 .top,
 .corner {
@@ -114,6 +166,24 @@ img {
 
 .loggedIn h1::first-letter {
   text-transform: capitalize;
+}
+
+@keyframes rotate3d {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  75% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 /* ---- stats.js ---- */
