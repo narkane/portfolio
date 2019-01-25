@@ -38,12 +38,29 @@ conta input {
 }
 
 * {
-  cursor: crosshair;
+  cursor: none;
 }
 
-/* Particles {
-  z-index: 10 !important;
-} */
+.alpha {
+  /* visibility: hidden; */
+}
+
+.alpha canvas {
+  /* -webkit-mask-image: -webkit-radial-gradien */
+  -webkit-mask-image: radial-gradient(transparent -500%, black 1400%),
+    radial-gradient(transparent 45%, black 63%);
+  /* ,
+    linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+  -webkit-mask-size: 1000% 100%;
+  /* -webkit-mask-repeat: repeat; */
+  /* -webkit-mask-composite: invert; */
+  -webkit-mask-position: center;
+  /* -webkit- */
+  /* fill-opacity: inherit; */
+  /* color-interpolation-filters: linearRGB;*/
+  /* outline-color: aquamarine; */
+  /* webkit-  */
+}
 
 .introFade {
   opacity: 0;

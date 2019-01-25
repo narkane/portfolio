@@ -6,7 +6,7 @@ import logo from "../img/dms.png";
 class ParticlesContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="alpha">
         <Particles
           params={{
             //   particles: {
@@ -145,12 +145,12 @@ class ParticlesContainer extends Component {
                 }
               },
               opacity: {
-                value: 0.5,
+                value: 0.7,
                 random: true,
                 anim: {
                   enable: true,
                   speed: 1,
-                  opacity_min: 0.003,
+                  opacity_min: 0.02,
                   sync: false
                 }
               },
@@ -168,7 +168,7 @@ class ParticlesContainer extends Component {
                 enable: true,
                 distance: 250,
                 color: "#ff7777",
-                opacity: 0.2,
+                opacity: 0.3,
                 width: 1
               },
               move: {
@@ -201,6 +201,7 @@ class ParticlesContainer extends Component {
               modes: {
                 grab: {
                   distance: 400,
+
                   line_linked: {
                     opacity: 1
                   }
