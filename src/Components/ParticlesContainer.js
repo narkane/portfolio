@@ -127,7 +127,7 @@ class ParticlesContainer extends Component {
                 }
               },
               color: {
-                value: "#ffffff"
+                value: "#ff9966"
               },
               shape: {
                 type: "circle",
@@ -145,20 +145,20 @@ class ParticlesContainer extends Component {
                 }
               },
               opacity: {
-                value: 0.005,
-                random: false,
+                value: 0.5,
+                random: true,
                 anim: {
                   enable: true,
                   speed: 1,
-                  opacity_min: 0.001,
+                  opacity_min: 0.003,
                   sync: false
                 }
               },
               size: {
-                value: 5,
+                value: 4,
                 random: true,
                 anim: {
-                  enable: false,
+                  enable: true,
                   speed: 10,
                   size_min: 0.1,
                   sync: false
@@ -206,11 +206,12 @@ class ParticlesContainer extends Component {
                   }
                 },
                 bubble: {
-                  distance: 200,
-                  size: 3,
-                  duration: 0.2,
-                  opacity: 0.7,
-                  speed: 20
+                  // color: "#000",
+                  distance: 250,
+                  size: 5,
+                  duration: 0.25,
+                  opacity: 0.85,
+                  speed: 50
                 },
                 repulse: {
                   distance: 300

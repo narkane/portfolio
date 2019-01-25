@@ -38,17 +38,7 @@ conta input {
 }
 
 * {
-  cursor: none;
-}
-
-canvas {
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100vh;
-  width: 100vw;
-  /* z-index: 10; */
+  cursor: crosshair;
 }
 
 /* Particles {

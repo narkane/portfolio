@@ -15,10 +15,16 @@
     align-items: flex-end; */
 }
 
-Particles {
-  height: 100vh !important;
-  width: 100vw !important;
-  z-index: 10 !important;
+canvas {
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /* padding: 10vh 0 0 0; */
+  height: 100vh;
+  width: 100vw;
+  /* border: 2px solid blue; */
+  /* z-index: 10; */
 }
 
 .corner {
@@ -44,6 +50,11 @@ img {
   /*margin: 0;
     padding: 15px 15px; */
   z-index: 2;
+}
+.left,
+.top,
+.corner {
+  visibility: hidden;
 }
 .left {
   opacity: 0.5;
@@ -105,43 +116,8 @@ img {
   text-transform: capitalize;
 }
 
-.treasureBox img {
-  max-height: 100px;
-  margin: 10px;
-}
-
-.treasureBox p {
-  text-shadow: none;
-  font-size: 22px;
-  padding: 0 12px;
-  color: white;
-}
-
-.Container button {
-  background: #219653;
-  font-size: 1.5em;
-  width: 75%;
-  line-height: 1em;
-  padding: 10px;
-  border: none;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
-  box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.75);
-}
-
-.addTreasure {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.addTreasure button {
-  color: #f5cc59;
-  font-family: "Risque", cursive;
-  padding: 4px;
-}
-
 /* ---- stats.js ---- */
-
+/* 
 .count-particles {
   background: #000022;
   position: absolute;
@@ -156,8 +132,8 @@ img {
   padding-bottom: 2px;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
-}
-
+} */
+/* 
 .js-count-particles {
   font-size: 1.1em;
 }
@@ -174,4 +150,4 @@ img {
 
 .count-particles {
   border-radius: 0 0 3px 3px;
-}
+} */
