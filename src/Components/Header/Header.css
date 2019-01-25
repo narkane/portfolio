@@ -6,7 +6,7 @@
 .Header {
   /* background: black; */
   /* margin: 100px 0 0 0; */
-  padding: 50px 10px 0px 40px;
+  padding: 30px 10px 0px 20px;
   height: 0%;
   display: flex;
   justify-content: space-between;
@@ -16,47 +16,63 @@
 
 .title {
   padding: 0px 0px 0 0px;
-  color: #eee;
+  color: #ffdfb6;
   font-weight: 600;
   font-family: "TimeBold", cursive;
-  font-size: 36px;
+  font-size: 40px;
   /* line-height: 55px; */
-  text-shadow: 4px 4px 10px rgb(205, 200, 100);
+  text-shadow: 0px 3px 25px rgb(255, 180, 120);
   z-index: 2;
 
   -webkit-mask-image: linear-gradient(
-    to right bottom,
-    rgba(0, 0, 0, 0.85),
+    to bottom,
+    rgba(0, 0, 0, 1),
     rgba(0, 0, 0, 0.1)
       /* ,
     linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.05)) */
   );
-  -webkit-mask-size: 200%, 100%;
+  -webkit-mask-size: 100% 7%;
+  -webkit-mask-repeat: repeat;
 }
 
 .loginContainer {
   height: 8vh;
   width: 100%;
   /* padding: 0px 20px 0 0; */
-  /* margin: auto; */
+  margin: 10px 30px 0 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   align-items: center;
 }
 .login {
   display: flex;
   flex-direction: column;
 }
+.login input:active,
+.login input:hover {
+  color: lightyellow;
+  background-color: black;
+  -webkit-mask-image: null;
+}
 
 .Header input,
 .Header button {
   margin: 0px 0px 0px 0px;
   border-color: black;
-  background-color: rgba(255, 128, 132, 0.5);
+  /* background-color: rgba(255, 128, 132, 0.5); */
 }
 
 .Header button {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+      /* ,
+  linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.05)) */
+  );
+  -webkit-mask-size: 100% 10%;
+  -webkit-mask-repeat: repeat;
   /* background: black; */
   background-color: rgba(255, 205, 205, 0.4);
   padding: 5px 10px 6px 10px;
@@ -149,13 +165,23 @@
 }
 
 .burgerbox {
-  color: #fff;
+  /* opacity: 0.75; */
+  color: rgb(255, 232, 200);
   font-size: 32pt;
   position: relative;
   top: 12px;
   right: 15px;
   /* padding: 0px 10px 0 0px; */
   z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+      /* ,
+  linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.05)) */
+  );
+  -webkit-mask-size: 100% 5%;
+  -webkit-mask-repeat: repeat;
 }
 .burgerbox:hover {
   text-shadow: 2px 2px 4px black;

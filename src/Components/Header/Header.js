@@ -92,7 +92,6 @@ export default class Header extends Component {
             {this.state.burger ? (
               <div className="dropDown">
                 <hr />
-                <div className="currUser">{username}</div>
 
                 <div className="dropBot">
                   DROP DOOOO~OOOOWN

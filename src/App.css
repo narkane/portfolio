@@ -47,7 +47,7 @@ conta input {
 
 .alpha canvas {
   /* -webkit-mask-image: -webkit-radial-gradien */
-  -webkit-mask-image: radial-gradient(transparent -500%, black 1400%),
+  -webkit-mask-image: radial-gradient(transparent -500%, black 600%),
     radial-gradient(transparent 45%, black 63%);
   /* ,
     linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */

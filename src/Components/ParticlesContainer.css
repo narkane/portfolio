@@ -42,12 +42,12 @@ canvas {
 .scene {
   opacity: 0.75;
   position: absolute;
-  bottom: 20px;
-  right: 60px;
+  bottom: 25px;
+  right: 100px;
   /* margin: 0 0 0 30px; */
   width: 100px;
   height: 100px;
-  perspective: 175px;
+  perspective: 190px;
 }
 .cube {
   height: 80px;

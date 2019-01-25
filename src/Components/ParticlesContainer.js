@@ -123,20 +123,20 @@ class ParticlesContainer extends Component {
             // }
             particles: {
               number: {
-                value: 90,
+                value: 100,
                 density: {
                   enable: true,
                   value_area: 800
                 }
               },
               color: {
-                value: "#ff9966"
+                value: "#f77"
               },
               shape: {
                 type: "circle",
                 stroke: {
-                  width: 0.75,
-                  color: "#cc3333"
+                  width: 1,
+                  color: "#fa6"
                 },
                 polygon: {
                   nb_sides: 5
@@ -148,7 +148,7 @@ class ParticlesContainer extends Component {
                 }
               },
               opacity: {
-                value: 0.7,
+                value: 0.8,
                 random: true,
                 anim: {
                   enable: true,
@@ -170,8 +170,8 @@ class ParticlesContainer extends Component {
               line_linked: {
                 enable: true,
                 distance: 250,
-                color: "#ff7777",
-                opacity: 0.3,
+                color: "#f22",
+                opacity: 0.4,
                 width: 1
               },
               move: {
@@ -206,16 +206,17 @@ class ParticlesContainer extends Component {
                   distance: 400,
 
                   line_linked: {
+                    // width: 10,
                     opacity: 1
                   }
                 },
                 bubble: {
                   // color: "#000",
-                  distance: 250,
-                  size: 5,
+                  distance: 200,
+                  size: 6,
                   duration: 0.25,
                   opacity: 0.85,
-                  speed: 50
+                  speed: 20
                 },
                 repulse: {
                   distance: 300
