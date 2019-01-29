@@ -40,30 +40,36 @@ const edit = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const db = req.app.get("db");
-
-  const finduser = await db.get_user([req.body.username]);
-  const user = finduser[0];
-
-  if (!user) {
-    res
-      .status(401)
-      .json("User not found. Please register as a new user before logging in.");
+  if (!req.body.username && req.session.user.username) {
+    res.status(200).json(req.session.user);
   } else {
-    const isAuthenticated = bcrypt.compareSync(req.body.password, user.hash);
-    if (!isAuthenticated) {
-      res.status(403).json("Incorrect username or password");
+    const db = req.app.get("db");
+
+    const finduser = await db.get_user([req.body.username]);
+    const user = finduser[0];
+
+    if (!user) {
+      res
+        .status(401)
+        .json(
+          "User not found. Please register as a new user before logging in."
+        );
     } else {
-      req.session.user = {
-        isAdmin: user.isAdmin,
-        id: user.user_id,
-        username: user.username,
-        picture: user.picture,
-        name: user.name,
-        requested: user.amount_requested,
-        received: user.amount_received
-      };
-      res.status(200).json(req.session.user);
+      const isAuthenticated = bcrypt.compareSync(req.body.password, user.hash);
+      if (!isAuthenticated) {
+        res.status(403).json("Incorrect username or password");
+      } else {
+        req.session.user = {
+          isAdmin: user.isAdmin,
+          id: user.user_id,
+          username: user.username,
+          picture: user.picture,
+          name: user.name,
+          requested: user.amount_requested,
+          received: user.amount_received
+        };
+        res.status(200).json(req.session.user);
+      }
     }
   }
 };

@@ -9,10 +9,14 @@
   text-align: center;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
 }
-
+.devpool * {
+  /* border: 10px groove rgba(150, 0, 0, 0.5); */
+}
 .devpool {
+  padding: 30px 28px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   /* background-color: black; */
   color: white;
   position: absolute;
@@ -21,18 +25,72 @@
   height: auto;
   width: auto;
 }
+.devpool-row * {
+  border: none;
+}
 .devpool-row {
-  background-color: rgba(100, 10, 10, 0.8);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  font-size: 11pt;
   border-radius: 7px;
   font-weight: 700;
-  border: 1px white groove;
+  border: 1px hotpink groove;
   padding: 5px 8px;
-  margin: 5px 0px;
-  min-height: 75px;
+  margin: 1px 0px 4px 0px;
+  min-height: 55px;
+  height: min-content;
+  max-height: 100%;
+  width: calc(100% - 15px);
 }
-.devpool-row font {
-  float: left;
+.dev-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* flex-wrap: nowrap; */
+  /* border: 1px solid blue; */
+  justify-content: space-between;
+  /* align-items: stretch; */
+  /* align-items: flex-start; 
+} 
+#dev-team {
+  display: flex;
+  flex-direction: row;
+  /* text-align: left; */
 }
+#dev-desc {
+  list-style-position: outside;
+  list-style-image: url(./img/dms_icon.png);
+  height: auto;
+  width: calc(100% + 5px);
+  float: top;
+  text-align: left;
+  /* display: flex;
+  flex-direction: column; */
+  position: relative;
+  top: -20px;
+  left: -5px;
+}
+#dev-desc li * {
+  position: relative;
+  top: -8px;
+  left: -2px;
+}
+#dev-team {
+  font-family: "Sheeping";
+  font-weight: 100;
+  font-size: 14pt;
+  position: relative;
+  /* float: right; */
+  /* width: fit-content; */
+  top: -9pt;
+  /* vertical-align: bottom; */
+}
+
+/* .devpool-row * {
+  float: left; 
+} */
 
 .intro,
 .introFade {
@@ -90,6 +148,14 @@ conta input {
 .introFade {
   opacity: 0;
   animation: fadeout 4s ease-in;
+}
+@font-face {
+  font-family: "Sheeping";
+  src: url("./fonts/Sheeping\ Cats.otf") format("truetype");
+}
+@font-face {
+  font-family: "Sheeping Straight";
+  src: url("./fonts/Sheeping\ Cats\ Straight.otf") format("truetype");
 }
 
 @keyframes fadeout {

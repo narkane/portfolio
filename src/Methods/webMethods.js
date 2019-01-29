@@ -1,60 +1,21 @@
-toggleAdmin = () => {
-  const { isAdmin } = this.state;
-  //this.setState({ isAdmin: !isAdmin });
-  return !isAdmin;
-};
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 
-login = (u, p) => {
-  axios
-    .post("/auth/login", {
-      username: u,
-      password: p
-    })
-    .then(resp => {
-      console.log(resp);
-      if (resp.status == 200) {
-        //this.setState({ loggedIn: true });
-        return true;
-      }
-    });
-};
+// var logged = false;
 
-register = (u, p) => {
-  axios
-    .post("/auth/register", {
-      username: u,
-      password: p
-    })
-    .then(resp => {
-      console.log(resp);
-    });
-};
+class webMethods extends Component {
+  toggleAdmin = () => {
+    const { isAdmin } = this.state;
+    //this.setState({ isAdmin: !isAdmin });
+    return !isAdmin;
+  };
+}
 
-logout = () => {
-  axios.get("/auth/logout").then(resp => {
-    console.log(resp);
-    alert(resp.data);
-    if (resp.status == 200) {
-      //this.setState({ loggedIn: false });
-      return false;
-    }
-  });
-};
+function mapStateToProps(state) {
+  return {
+    loggedIn: state.loggedIn
+  };
+}
 
-deleteUser = () => {
-  axios.delete("/auth/delete").then(resp => {
-    alert(resp.data);
-    console.log(resp);
-    if (resp.status == 200) {
-      //this.setState({ loggedIn: false });
-      return false;
-    }
-  });
-};
-
-module.exports = {
-  login,
-  logout,
-  deleteUser,
-  register
-};
+export default connect(mapStateToProps)(webMethods);

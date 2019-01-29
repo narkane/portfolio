@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Rnd } from "react-rnd";
 import "./App.css";
-import "./Components/ParticlesContainer.css";
+import "./Components/ParticleJS/ParticlesContainer.css";
 import music from "./audio/synthetic.mp3";
 import Header from "./Components/Header/Header";
 import ParticlesContainer from "./Components/ParticleJS/ParticlesContainer";
@@ -118,22 +118,29 @@ class App extends Component {
               >
                 {this.state.devpool.map(el => {
                   return (
-                    <div className="devpool-row">
-                      <small>
-                        {"("}
-                        {el.team_name}
-                        {" } - - - - - - - - - - - - - - - { "}
-                      </small>
-                      <small>
-                        {el.team_lead}
-                        {")"}
-                      </small>
-                      <hr />
-                      <ul>
-                        <li>
-                          <font size="1">{el.team_desc}</font>
-                        </li>
-                      </ul>
+                    <div
+                      className="devpool-row"
+                      style={{
+                        background: `rgba(${(Math.pow(el.team_lead.length, 2) %
+                          25) *
+                          10}, ${Math.pow(el.team_lead.length, 2)}, ${el
+                          .team_lead.length * 15}, 0.7`
+                      }}
+                    >
+                      <div className="dev-header">
+                        {/* <small> */}
+                        <div id="dev-team">{`${el.team_name}`}</div>
+                        {/* <div id="dev-mid" /> */}
+                        <div id="dev-lead">{`[ ${el.team_lead} ]`}</div>
+                        {/* </small> */}
+                      </div>
+                      <div id="dev-desc">
+                        <ul>
+                          <li>
+                            <font size="1">{el.team_desc}</font>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   );
                 })}

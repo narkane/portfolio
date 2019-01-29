@@ -1,25 +1,97 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateLoggedIn } from "../../ducks/reducer";
+import webMethods from "../../Methods/webMethods";
 import NewsCard from "../NewsCard";
 import "./Header.css";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor() {
     super();
     this.state = {
       username: "",
       password: "",
       isAdmin: false,
-      loggedIn: false,
 
       burger: false
     };
+    this.toggleBurg = this.toggleBurg.bind(this);
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.change_name = this.change_name.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    //this.change_name = this.change_name.bind(this);
+    // webMethods = new webMethods();
+    // const { updateLoggedIn } = this.props;
   }
+
+  login = (u, p) => {
+    const { updateLoggedIn } = this.props;
+
+    axios
+      .post("/auth/login", {
+        username: u,
+        password: p
+      })
+      .then(resp => {
+        console.log(resp.data);
+        if (resp.status === 200) {
+          // console.log(true);
+          //this.setState({ loggedIn: true });
+          console.log("yo");
+          updateLoggedIn(true);
+        } else {
+          // console.log(resp.status);
+          console.log("no");
+          updateLoggedIn(false);
+        }
+        // return logged;
+      });
+    // console.log("LOGGED?: " + this.props.loggedIn);
+  };
+
+  register = (u, p) => {
+    axios
+      .post("/auth/register", {
+        username: u,
+        password: p
+      })
+      .then(resp => {
+        console.log(resp);
+      });
+  };
+
+  logout = () => {
+    const { updateLoggedIn } = this.props;
+
+    axios.get("/auth/logout").then(resp => {
+      alert(resp.data);
+      console.log(resp);
+      if (resp.status == 200) {
+        //this.setState({ loggedIn: false });
+        updateLoggedIn(false);
+      }
+    });
+    // return logged;
+  };
+
+  deleteUser = () => {
+    const { updateLoggedIn } = this.props;
+    axios.delete("/auth/delete").then(resp => {
+      alert(resp.data);
+      console.log(resp);
+      if (resp.status == 200) {
+        //this.setState({ loggedIn: false });
+        updateLoggedIn(false);
+      }
+    });
+    // return logged;
+  };
+
+  componentDidMount = () => {
+    this.login("", "");
+  };
 
   componentDidUpdate() {
     if (document.getElementById("change_name_input")) {
@@ -54,11 +126,10 @@ export default class Header extends Component {
 
   render() {
     const { username, password } = this.state;
-    const { user } = this.props;
     return (
       <div className="Header">
         <div className="title">Software Development</div>
-        {this.state.loggedIn ? (
+        {this.props.loggedIn ? (
           <>
             <div className="welcomeMessage" />
             {/* <button onClick={this.logout}>Logout</button> */}
@@ -104,10 +175,20 @@ export default class Header extends Component {
                   onChange={e => this.handlePasswordInput(e.target.value)}
                 />
               </div>
-              <button onClick={this.login} id="log">
+              <button
+                onClick={() => {
+                  this.login(this.state.username, this.state.password);
+                }}
+                id="log"
+              >
                 Log In
               </button>
-              <button onClick={this.register} id="reg">
+              <button
+                onClick={() => {
+                  this.register(this.state.username, this.state.password);
+                }}
+                id="reg"
+              >
                 Register
               </button>
             </div>
@@ -117,3 +198,14 @@ export default class Header extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  // const { loggedIn } = state;
+
+  return { loggedIn: state.loggedIn };
+}
+
+export default connect(
+  mapStateToProps,
+  { updateLoggedIn }
+)(Header);

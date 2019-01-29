@@ -82,7 +82,7 @@ canvas {
   opacity: 0.5;
   background-size: 150% 20vh;
   background-repeat: repeat-y;
-  background-image: url("../img/left.png");
+  background-image: url("../../img/left.png");
   position: absolute;
   top: 20vh;
   height: calc(100% - 20vh);
@@ -93,7 +93,7 @@ canvas {
   opacity: 0.5;
   background-size: 20vw 120%;
   background-repeat: repeat-x;
-  background-image: url("../img/top.png");
+  background-image: url("../../img/top.png");
   position: absolute;
   top: 0px;
   left: 10vw;

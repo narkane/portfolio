@@ -4,4 +4,4 @@ SELECT
     username AS "team_lead"
 from users
     INNER JOIN devpool
-    ON devpool.leader_id = users.id;
+    ON devpool.user_id = users.id;
