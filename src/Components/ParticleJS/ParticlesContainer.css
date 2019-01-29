@@ -1,18 +1,7 @@
 .Container {
-  /* background: #f9ffff; */
-  /* background-origin: border-box; */
-  /* border: #555454 4px solid; */
-
-  /* background-size: 100%; */
-  /* 20x20 px grid */
-  /* height: 100vh; */
   display: flex;
   width: 100vw;
-  /* height: 100vh; */
   border: 2px solid blue;
-  /* opacity: 0.8; */
-  /* justify-content: space-around;
-    align-items: flex-end; */
 }
 
 canvas {
@@ -20,31 +9,21 @@ canvas {
   position: absolute;
   top: 0px;
   left: 0px;
-  /* padding: 10vh 0 0 0; */
+  pointer-events: none;
   height: 100vh;
   width: 100vw;
-  /* border: 2px solid blue; */
-  /* z-index: 10; */
 }
 
-.corner {
-  opacity: 0.5;
-  background-size: 100%;
-  background-image: url("../img/corner.png");
-  position: absolute;
-  top: 5px;
-  left: 0px;
-  height: calc(20vh - 5px);
-  width: 10vw;
-  z-index: 0;
+.card_actions {
+  display: flex;
+  flex-direction: column;
 }
 
 .scene {
   opacity: 0.75;
   position: absolute;
-  bottom: 25px;
-  right: 100px;
-  /* margin: 0 0 0 30px; */
+  bottom: 45px;
+  right: 104px;
   width: 100px;
   height: 100px;
   perspective: 190px;
@@ -57,7 +36,6 @@ canvas {
   align-items: center;
   position: relative;
   transform-style: preserve-3d;
-  /* transform: translateZ(-100px); */
   animation: rotate3d 16s linear infinite;
 }
 
@@ -67,16 +45,12 @@ canvas {
 .back,
 .side,
 .side2 {
-  opacity: 1;
+  border: 3px double black;
+  opacity: 0.75;
   height: 125%;
   width: 135%;
-  /* margin: 5px 0; */
   padding: 0 0;
   position: absolute;
-  /* top: 0px;
-  left: 0px; */
-  /*margin: 0;
-    padding: 15px 15px; */
   z-index: 2;
 }
 
@@ -88,10 +62,6 @@ canvas {
 }
 .side {
   transform: rotateY(90deg) translateZ(40px);
-  /* , translateZ(100px); */
-  /* width: 73px; */
-  /* calc((9 / 20) * 140px); */
-  /* padding: 0 54px; */
 }
 .side2 {
   transform: rotateY(-90deg) translateZ(40px);
@@ -115,7 +85,6 @@ canvas {
   background-image: url("../img/left.png");
   position: absolute;
   top: 20vh;
-  /* left: -9px; */
   height: calc(100% - 20vh);
   width: 6.5vw;
   z-index: 0;
@@ -132,23 +101,6 @@ canvas {
   height: 20vh;
   z-index: 0;
 }
-
-/* .treasureBox {
-    height: 70vh;
-    width: 17vw;
-    background: rgb(196, 196, 196, 0.65);
-    border-top-left-radius: 10vw;
-    border-top-right-radius: 10vw;
-    border: 3vw solid #555454;
-    border-bottom: 10px solid rgb(56, 55, 55, 0.65);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5vh;
-    box-shadow: 20px 0px 23px 10px rgba(0, 0, 0, 0.47);
-    overflow: auto;
-  } */
 
 ::-webkit-scrollbar {
   display: none;
@@ -185,39 +137,3 @@ canvas {
     transform: rotateY(360deg);
   }
 }
-
-/* ---- stats.js ---- */
-/* 
-.count-particles {
-  background: #000022;
-  position: absolute;
-  top: 48px;
-  left: 0;
-  width: 80px;
-  color: #13e8e9;
-  font-size: 0.8em;
-  text-align: left;
-  text-indent: 4px;
-  line-height: 14px;
-  padding-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-} */
-/* 
-.js-count-particles {
-  font-size: 1.1em;
-}
-
-#stats,
-.count-particles {
-  -webkit-user-select: none;
-}
-
-#stats {
-  border-radius: 3px 3px 0 0;
-  overflow: hidden;
-}
-
-.count-particles {
-  border-radius: 0 0 3px 3px;
-} */

@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { Rnd } from "react-rnd";
 import "./App.css";
 import "./Components/ParticlesContainer.css";
 import music from "./audio/synthetic.mp3";
 import Header from "./Components/Header/Header";
-// import Container from "./Components/Container/Container";
-import ParticlesContainer from "./Components/ParticlesContainer";
+import ParticlesContainer from "./Components/ParticleJS/ParticlesContainer";
+
+import logo from "./img/dms.png";
+import logo_s from "./img/dms_s.png";
+import logo_t from "./img/dms_t.png";
+import logo_b from "./img/dms_b.png";
 
 import introMp4 from "./video/synthwave.mp4";
+import NewsCard from "./Components/NewsCard";
 
 class App extends Component {
   constructor() {
@@ -16,6 +23,7 @@ class App extends Component {
       intro: 0
     };
     this.updateUser = this.updateUser.bind(this);
+    this.getDPTeams = this.getDPTeams.bind(this);
   }
 
   componentDidMount = () => {
@@ -34,12 +42,27 @@ class App extends Component {
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
-      if (this.myVideo.currentTime >= 6) {
+      if (this.myVideo.currentTime >= 4.5) {
         this.myVideo.pause();
         this.setState({ intro: 2 });
       }
     };
   };
+
+  getDPTeams() {
+    axios
+      .get("/auth/devpool")
+      .then(resp => {
+        console.log(resp);
+        if (resp.status == 200) {
+          this.setState({ devpool: resp.data });
+          console.log(this.state.devpool);
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   updateUser(user) {
     this.setState({
@@ -85,8 +108,56 @@ class App extends Component {
           </>
         ) : (
           <>
-            <Header user={user} updateUser={this.updateUser} className="nav" />
+            {this.state.devpool ? (
+              <Rnd
+                default={{
+                  x: 100,
+                  y: 100
+                }}
+                className="devpool"
+              >
+                {this.state.devpool.map(el => {
+                  return (
+                    <div className="devpool-row">
+                      <small>
+                        {"("}
+                        {el.team_name}
+                        {" } - - - - - - - - - - - - - - - { "}
+                      </small>
+                      <small>
+                        {el.team_lead}
+                        {")"}
+                      </small>
+                      <hr />
+                      <ul>
+                        <li>
+                          <font size="1">{el.team_desc}</font>
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
+              </Rnd>
+            ) : null}
+            <Header
+              listDP={this.getDPTeams}
+              user={user}
+              updateUser={this.updateUser}
+              className="nav"
+            />
+
             <ParticlesContainer />
+            {/* <div className="corner" /> */}
+            <div className="scene">
+              <div className="cube">
+                <img src={logo} className="front" />
+                <img src={logo_s} className="side" />
+                <img src={logo} className="back" />
+                <img src={logo_s} className="side2" />
+                <img src={logo_t} className="top_s" />
+                <img src={logo_b} className="bot" />
+              </div>
+            </div>
           </>
         )}
       </div>

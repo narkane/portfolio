@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import NewsCard from "../NewsCard";
 import "./Header.css";
 
 export default class Header extends Component {
@@ -16,6 +17,27 @@ export default class Header extends Component {
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.change_name = this.change_name.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (document.getElementById("change_name_input")) {
+      const input = document.getElementById("change_name_input");
+      input.addEventListener("keyup", function(e) {
+        if (e.keyCode === 13) {
+          console.log(input.value);
+          axios
+            .put("/auth/change_name", { username: input.value })
+            .then(resp => {
+              console.log(resp);
+              if ((resp.status = 200)) {
+                console.log("YAY new name!");
+              }
+            });
+        }
+      });
+    }
   }
 
   handleUsernameInput(value) {
@@ -24,48 +46,6 @@ export default class Header extends Component {
 
   handlePasswordInput(value) {
     this.setState({ password: value });
-  }
-
-  toggleAdmin() {
-    const { isAdmin } = this.state;
-    this.setState({ isAdmin: !isAdmin });
-  }
-
-  login() {
-    axios
-      .post("/auth/login", {
-        username: this.state.username,
-        password: this.state.password
-      })
-      .then(resp => {
-        console.log(resp);
-        if ((resp.status = 200)) {
-          this.setState({ loggedIn: true });
-        }
-      });
-    // axios POST to /auth/login here
-  }
-
-  register() {
-    axios
-      .post("/auth/register", {
-        username: this.state.username,
-        password: this.state.password
-      })
-      .then(resp => {
-        console.log(resp);
-      });
-    // axios POST to /auth/register here
-  }
-
-  logout() {
-    axios.get("/auth/logout").then(resp => {
-      console.log(resp);
-      if ((resp.status = 200)) {
-        this.setState({ loggedIn: false });
-      }
-    });
-    // axios GET to /auth/logout here
   }
 
   toggleBurg = () => {
@@ -79,27 +59,34 @@ export default class Header extends Component {
       <div className="Header">
         <div className="title">Software Development</div>
         {this.state.loggedIn ? (
-          <div className="welcomeMessage">
-            {/* <button type="submit" onClick={this.logout}>
-              Logout
-            </button> */}
+          <>
+            <div className="welcomeMessage" />
+            {/* <button onClick={this.logout}>Logout</button> */}
 
             <div className="burgerbox" onClick={this.toggleBurg}>
-              {" "}
               &#9776;
             </div>
 
             {this.state.burger ? (
               <div className="dropDown">
-                <hr />
-
-                <div className="dropBot">
-                  DROP DOOOO~OOOOWN
-                  <hr />
+                <div className="tabs">
+                  <button className="dropButt" onClick={this.props.listDP}>
+                    Devpool List
+                  </button>
+                  <button className="dropButt">Teacherpool List</button>
+                  <button className="dropButt" onClick={this.deleteUser}>
+                    Delete Acct.
+                  </button>
+                  <button className="dropButt" onClick={this.logout}>
+                    Logout
+                  </button>
                 </div>
+                <NewsCard />
+                {/* </NewsCard> */}
+                {/* <div width="400" height="400" />; */}
               </div>
             ) : null}
-          </div>
+          </>
         ) : (
           <div className="nav">
             <div className="loginContainer">
@@ -117,16 +104,9 @@ export default class Header extends Component {
                   onChange={e => this.handlePasswordInput(e.target.value)}
                 />
               </div>
-              {/* <div className="adminCheck">
-              <input
-                type="checkbox"
-                id="adminCheckbox"
-                onChange={() => this.toggleAdmin()}
-              />{" "}
-              <span> Admin </span>
-            </div> */}
-
-              <button onClick={this.login}>Log In</button>
+              <button onClick={this.login} id="log">
+                Log In
+              </button>
               <button onClick={this.register} id="reg">
                 Register
               </button>

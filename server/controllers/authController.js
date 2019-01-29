@@ -18,6 +18,27 @@ const register = async (req, res) => {
   }
 };
 
+const edit = async (req, res) => {
+  const db = req.app.get("db");
+
+  const user = await db.get_user([req.body.username]);
+  const existinguser = user[0];
+  if (!existinguser) {
+    db.change_name([req.session.user.username, req.body.username]);
+    req.session.user = {
+      username: req.body.username
+    };
+    return res.status(200).json(req.session.user);
+  } else {
+    return res.status(409).json("OMG that name EXISTS... DUH-amn");
+    // const hash = await bcrypt.hash(req.body.password, 12);
+    // let registereduser = await db.register_user([req.body.username, hash]);
+    // const user = registereduser[0];
+    // req.session.user = {
+    //   username: user.username
+  }
+};
+
 const login = async (req, res) => {
   const db = req.app.get("db");
 
@@ -47,17 +68,47 @@ const login = async (req, res) => {
   }
 };
 
+const listDPTeams = async (req, res) => {
+  const db = req.app.get("db");
+
+  const findDPusers = await db.list_devpool_teams();
+  console.log(findDPusers);
+  res.status(200).json(findDPusers);
+};
+
 const logout = (req, res) => {
   req.session.destroy();
+  res.status(200).json("YOU GONE!!");
 };
 
 const adminOnly = (req, res) => {
   res.status(200).json(req.session);
 };
 
+const removeUser = async (req, res) => {
+  const db = req.app.get("db");
+
+  const user = await db.get_user([req.session.user.username]);
+  const existinguser = user[0];
+  if (existinguser) {
+    console.log(existinguser + " | " + req.session.user.username);
+    db.delete_user([req.session.user.username]);
+    req.session.destroy();
+    return res.status(200).json("User deleted!");
+  } else {
+    console.log(existinguser + " |FAIL| " + req.session.user.username);
+    return res
+      .status(409)
+      .json("User doesn't exist? " + req.session.user.username);
+  }
+};
+
 module.exports = {
   register,
+  edit,
   login,
+  listDPTeams,
   adminOnly,
-  logout
+  logout,
+  removeUser
 };
