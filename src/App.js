@@ -36,18 +36,17 @@ class App extends Component {
       },
       false
     );
-    this.myAudio.onloadeddata = () => {
-      this.myAudio.play().catch(e => {
-        console.log(e);
-      });
-    };
+    this.myAudio.autoPlay = true;
+    this.myAudio.load();
+    // this.myAudio.onloadeddata = () => {
+    //   this.myAudio.play().catch(e => {
+    //     console.log(e);
+    //   });
+    // };
 
     this.myVideo = document.getElementById("video");
-    this.myVideo.onloadeddata = () => {
-      this.myVideo.play().catch(e => {
-        console.log(e);
-      });
-    };
+    this.myVideo.autoPlay = true;
+    this.myVideo.load();
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
