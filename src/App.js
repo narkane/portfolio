@@ -101,7 +101,7 @@ class App extends Component {
         ) : this.state.intro == 1 ? (
           <>
             <div className="introFade">
-              <video id="video" height="50%" width="50%">
+              <video id="video" height="50%" width="50%" autoPlay muted>
                 <source src={introMp4} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
