@@ -39,7 +39,7 @@ class App extends Component {
     this.myAudio.play();
 
     this.myVideo = document.getElementById("video");
-    this.myVideo.play();
+    this.myVideo.autoPlay();
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
@@ -91,7 +91,7 @@ class App extends Component {
               id="video"
               height="50%"
               width="50%"
-              autoPlay
+              autoPlay="true"
               // onTimeUpdate={this.vidTimer(this)}
             >
               <source src={introMp4} type="video/mp4" />
@@ -101,7 +101,7 @@ class App extends Component {
         ) : this.state.intro == 1 ? (
           <>
             <div className="introFade">
-              <video id="video" height="50%" width="50%" autoPlay>
+              <video id="video" height="50%" width="50%">
                 <source src={introMp4} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
