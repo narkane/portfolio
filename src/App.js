@@ -36,7 +36,7 @@ class App extends Component {
       },
       false
     );
-    // this.myAudio.load();
+    this.myAudio.load();
     // this.myAudio.onloadeddata = () => {
     this.myAudio.play().catch(e => {
       console.log(e);
