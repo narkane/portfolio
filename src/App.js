@@ -36,14 +36,18 @@ class App extends Component {
       },
       false
     );
-    this.myAudio.play().catch(e => {
-      console.log(e);
-    });
+    this.myAudio.onloadeddata = () => {
+      this.myAudio.play().catch(e => {
+        console.log(e);
+      });
+    };
 
     this.myVideo = document.getElementById("video");
-    this.myVideo.play().catch(e => {
-      console.log(e);
-    });
+    this.myVideo.onloadeddata = () => {
+      this.myVideo.play().catch(e => {
+        console.log(e);
+      });
+    };
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
@@ -95,7 +99,7 @@ class App extends Component {
               id="video"
               height="50%"
               width="50%"
-              autoPlay="true"
+              autoPlay
               // onTimeUpdate={this.vidTimer(this)}
             >
               <source src={introMp4} type="video/mp4" />
