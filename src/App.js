@@ -22,6 +22,7 @@ class App extends Component {
       user: {},
       intro: 0
     };
+    this.startMusic = this.startMusic.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.getDPTeams = this.getDPTeams.bind(this);
   }
@@ -38,16 +39,8 @@ class App extends Component {
     );
     this.myAudio.load();
     // this.myAudio.onloadeddata = () => {
-    this.myAudio
-      .play()
-      .catch(e => {
-        console.log(e);
-        throw new Error("BOOP: " + e.message);
-      })
-      .catch(err => {
-        console.log(err);
-        console.log(err.message);
-      });
+
+    document.addEventListener("click", this.startMusic());
     // };
 
     this.myVideo = document.getElementById("video");
@@ -62,6 +55,19 @@ class App extends Component {
       }
     };
   };
+
+  startMusic() {
+    this.myAudio
+      .play()
+      .catch(e => {
+        console.log(e);
+        throw new Error("BOOP: " + e.message);
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(err.message);
+      });
+  }
 
   getDPTeams() {
     if (this.state.devpool) {
