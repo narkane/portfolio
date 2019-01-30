@@ -36,12 +36,12 @@ class App extends Component {
       },
       false
     );
-    // this.myAudio.load();
-    // this.myAudio.onloadeddata = () => {
-    //   this.myAudio.play().catch(e => {
-    //     console.log(e);
-    //   });
-    // };
+    this.myAudio.load();
+    this.myAudio.onloadeddata = () => {
+      this.myAudio.play().catch(e => {
+        console.log(e);
+      });
+    };
 
     this.myVideo = document.getElementById("video");
     // this.myVideo.autoPlay = true;
