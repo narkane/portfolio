@@ -32,5 +32,5 @@ app.post("/auth/register", ac.register);
 app.put("/auth/change_name", ac.edit);
 app.delete("/auth/delete", ac.removeUser);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3004;
 app.listen(PORT, () => console.log(` - Listening on port (${PORT}) - `));

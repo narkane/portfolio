@@ -1,8 +1,8 @@
 {
-  "name": "node-auth-afternoon",
+  "name": "Software-Development-Committee",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
+  "proxy": "http://localhost:3004",
   "main": "server/index.js",
   "dependencies": {
     "@material-ui/core": "^3.9.0",
@@ -39,15 +39,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devlemire/node-auth-afternoon.git"
-  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/devlemire/node-auth-afternoon/issues"
-  },
-  "homepage": "https://github.com/devlemire/node-auth-afternoon#readme"
+  "author": "John Thummel"
 }
