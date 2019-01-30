@@ -38,9 +38,10 @@ class App extends Component {
     );
     this.myAudio.load();
     // this.myAudio.onloadeddata = () => {
-    this.myAudio.play().catch(e => {
-      console.log(e);
-    });
+    this.myAudio.play();
+    // .catch(e => {
+    //   console.log(e);
+    // });
     // };
 
     this.myVideo = document.getElementById("video");
