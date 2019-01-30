@@ -40,7 +40,7 @@ class App extends Component {
     this.myAudio.load();
     // this.myAudio.onloadeddata = () => {
 
-    document.addEventListener("click", this.startMusic());
+    document.addEventListener("click", this.startMusic);
     // };
 
     this.myVideo = document.getElementById("video");
