@@ -20,7 +20,7 @@ canvas {
 }
 
 .scene {
-  opacity: 0.75;
+  opacity: 0.85;
   position: absolute;
   bottom: 45px;
   right: 104px;
@@ -45,6 +45,7 @@ canvas {
 .back,
 .side,
 .side2 {
+  box-shadow: 1px 1px 25px rgba(255, 130, 90, 1);
   border: 3px double black;
   opacity: 0.75;
   height: 125%;

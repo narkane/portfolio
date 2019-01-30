@@ -11,6 +11,7 @@ const PORT = 4000;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static(`${__dirname}/../build`));
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);

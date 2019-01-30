@@ -50,18 +50,22 @@ class App extends Component {
   };
 
   getDPTeams() {
-    axios
-      .get("/auth/devpool")
-      .then(resp => {
-        console.log(resp);
-        if (resp.status == 200) {
-          this.setState({ devpool: resp.data });
-          console.log(this.state.devpool);
-        }
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    if (this.state.devpool) {
+      this.setState({ devpool: null });
+    } else {
+      axios
+        .get("/auth/devpool")
+        .then(resp => {
+          console.log(resp);
+          if (resp.status == 200) {
+            this.setState({ devpool: resp.data });
+            console.log(this.state.devpool);
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   }
 
   updateUser(user) {
@@ -111,8 +115,8 @@ class App extends Component {
             {this.state.devpool ? (
               <Rnd
                 default={{
-                  x: 100,
-                  y: 100
+                  x: 20,
+                  y: 20
                 }}
                 className="devpool"
               >
@@ -123,8 +127,9 @@ class App extends Component {
                       style={{
                         background: `rgba(${(Math.pow(el.team_lead.length, 2) %
                           25) *
-                          10}, ${Math.pow(el.team_lead.length, 2)}, ${el
-                          .team_lead.length * 15}, 0.7`
+                          10}, ${(Math.pow(el.team_lead.length, 2) *
+                          el.team_lead.charCodeAt(0)) %
+                          256}, ${el.team_lead.length * 15}, 0.5`
                       }}
                     >
                       <div className="dev-header">
