@@ -27,7 +27,7 @@
   left: 2%;
   height: auto;
   width: auto;
-  min-width: 120px;
+  min-width: 220px;
 }
 .devpool-row * {
   /* border: none; */
@@ -46,9 +46,9 @@
   min-height: 55px;
   height: min-content;
   max-height: 100%;
-  min-width: 120px;
-  width: calc(100% - 15px);
-  max-width: 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 200%;
 }
 .dev-header {
   display: flex;

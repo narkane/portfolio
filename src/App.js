@@ -112,6 +112,7 @@ class App extends Component {
             <ParticlesContainer />
             {/* <Container user={user} className="body" />
             </ParticlesContainer> */}
+            <script>document.getElementById('vid').play();</script>
           </>
         ) : (
           <>
