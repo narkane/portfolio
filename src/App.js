@@ -36,9 +36,7 @@ class App extends Component {
       },
       false
     );
-    this.myAudio.autoPlay = true;
-    this.myAudio.load();
-    this.myAudio.play();
+    // this.myAudio.load();
     // this.myAudio.onloadeddata = () => {
     //   this.myAudio.play().catch(e => {
     //     console.log(e);
@@ -112,7 +110,7 @@ class App extends Component {
             <ParticlesContainer />
             {/* <Container user={user} className="body" />
             </ParticlesContainer> */}
-            <script>document.getElementById('vid').play();</script>
+            <script>{document.getElementById("vid").play()}</script>
           </>
         ) : (
           <>

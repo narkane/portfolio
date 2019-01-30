@@ -46,8 +46,8 @@
   min-height: 55px;
   height: min-content;
   max-height: 100%;
-  width: 100%;
-  min-width: 100%;
+  width: calc(100% - 15px);
+  min-width: calc(100% - 15px);
   max-width: 200%;
 }
 .dev-header {
