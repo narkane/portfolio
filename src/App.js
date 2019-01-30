@@ -38,6 +38,7 @@ class App extends Component {
     );
     this.myAudio.autoPlay = true;
     this.myAudio.load();
+    this.myAudio.play();
     // this.myAudio.onloadeddata = () => {
     //   this.myAudio.play().catch(e => {
     //     console.log(e);
@@ -47,7 +48,6 @@ class App extends Component {
     this.myVideo = document.getElementById("video");
     this.myVideo.autoPlay = true;
     this.myVideo.load();
-    alert(this.myVideo.autoPlay);
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
