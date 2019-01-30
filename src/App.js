@@ -36,10 +36,14 @@ class App extends Component {
       },
       false
     );
-    this.myAudio.play();
+    this.myAudio.play().catch(e => {
+      console.log(e);
+    });
 
     this.myVideo = document.getElementById("video");
-    this.myVideo.autoPlay();
+    this.myVideo.play().catch(e => {
+      console.log(e);
+    });
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
       if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
