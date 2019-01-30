@@ -6,7 +6,6 @@ const ac = require("./controllers/authController");
 require("dotenv").config();
 
 const { CONNECTION_STRING, SESSION_SECRET } = process.env;
-const PORT = 4000;
 
 const app = express();
 
@@ -33,4 +32,5 @@ app.post("/auth/register", ac.register);
 app.put("/auth/change_name", ac.edit);
 app.delete("/auth/delete", ac.removeUser);
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(` - Listening on port (${PORT}) - `));
