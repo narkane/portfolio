@@ -169,12 +169,14 @@ class Header extends Component {
                   onChange={e => this.handleUsernameInput(e.target.value)}
                 />
                 <input
+                  id="passin"
                   type="password"
                   placeholder="Password"
                   value={password}
                   onChange={e => this.handlePasswordInput(e.target.value)}
                 />
               </div>
+              {/* </div> */}
               <button
                 onClick={() => {
                   this.login(this.state.username, this.state.password);

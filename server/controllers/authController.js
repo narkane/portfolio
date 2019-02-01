@@ -40,38 +40,50 @@ const edit = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  const db = req.app.get("db");
+
   if (!req.body.username && req.session.user.username) {
-    res.status(200).json(req.session.user);
+    req.body.username = req.session.user.username;
+  }
+  const finduser = await db.get_user([req.body.username]);
+  const user = finduser[0];
+
+  if (!user) {
+    res
+      .status(401)
+      .json("User not found. Please register as a new user before logging in.");
   } else {
-    const db = req.app.get("db");
-
-    const finduser = await db.get_user([req.body.username]);
-    const user = finduser[0];
-
-    if (!user) {
-      res
-        .status(401)
-        .json(
-          "User not found. Please register as a new user before logging in."
-        );
+    const isAuthenticated = bcrypt.compareSync(req.body.password, user.hash);
+    if (!isAuthenticated) {
+      res.status(403).json("Incorrect username or password");
     } else {
-      const isAuthenticated = bcrypt.compareSync(req.body.password, user.hash);
-      if (!isAuthenticated) {
-        res.status(403).json("Incorrect username or password");
-      } else {
-        req.session.user = {
-          isAdmin: user.isAdmin,
-          id: user.user_id,
-          username: user.username,
-          picture: user.picture,
-          name: user.name,
-          requested: user.amount_requested,
-          received: user.amount_received
-        };
-        res.status(200).json(req.session.user);
-      }
+      req.session.user = {
+        isAdmin: user.isAdmin,
+        id: user.user_id,
+        username: user.username,
+        picture: user.picture,
+        name: user.name,
+        requested: user.amount_requested,
+        received: user.amount_received
+      };
+      res.status(200).json(req.session.user);
     }
   }
+};
+
+const joinDPTeam = async (req, res) => {
+  const db = req.app.get("db");
+
+  const u_id = req.session.user.id;
+  const team = req.body.team;
+  const desc = req.body.desc;
+  console.log("FDASFADSFDASFA: ");
+  console.log(u_id);
+  console.log("\nFDASFADSFDASFA: ");
+
+  let newDPentry = await db.join_DP_team([team, desc, 1, u_id]);
+  // const user = registereduser[0];
+  return res.status(201).json(newDPentry[0]);
 };
 
 const listDPTeams = async (req, res) => {
@@ -113,6 +125,7 @@ module.exports = {
   register,
   edit,
   login,
+  joinDPTeam,
   listDPTeams,
   adminOnly,
   logout,

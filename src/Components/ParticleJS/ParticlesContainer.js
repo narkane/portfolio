@@ -4,7 +4,7 @@ import Particles from "react-particles-js";
 class ParticlesContainer extends Component {
   render() {
     return (
-      <div className="alpha">
+      <div className="particles">
         <Particles
           params={{
             particles: {
@@ -63,12 +63,12 @@ class ParticlesContainer extends Component {
               move: {
                 enable: true,
                 speed: 1,
-                direction: "none",
-                random: false,
+                direction: "right",
+                random: true,
                 straight: false,
                 out_mode: "out",
                 attract: {
-                  enable: false,
+                  enable: true,
                   rotateX: 600,
                   rotateY: 1200
                 }
