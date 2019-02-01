@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const ac = require("./controllers/authController");
 require("dotenv").config();
 
-const { CONNECTION_STRING, SESSION_SECRET } = process.env;
+const CONNECTION_STRING = process.env.CONNECTION_STRING;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 const app = express();
 
@@ -34,5 +35,5 @@ app.delete("/auth/delete", ac.removeUser);
 
 app.post("/db/join_team", ac.joinDPTeam);
 
-const PORT = process.env.PORT || 3004;
+const PORT = process.env.EXPRESS_PORT || 3004;
 app.listen(PORT, () => console.log(` - Listening on port (${PORT}) - `));

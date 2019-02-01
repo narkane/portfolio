@@ -211,9 +211,6 @@ class App extends Component {
                 <img src={logo_b} className="bot" />
               </div>
             </div>
-            {/* <Container user={user} className="body" />
-            </ParticlesContainer> */}
-            {/* <script>{this.myAudio.play()}</script> */}
           </>
         ) : (
           <>
