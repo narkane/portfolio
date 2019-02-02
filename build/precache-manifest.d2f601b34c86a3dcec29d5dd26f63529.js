@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "6942eb831d93d9cf6188d1d4ba35e4fd",
-    "url": "/static/media/dms_b.6942eb83.png"
+    "revision": "dd7974f3a5429a349923",
+    "url": "/static/css/main.934559d4.chunk.css"
   },
   {
-    "revision": "6f2739eb8ba2ea4233e2",
-    "url": "/static/css/main.4a585374.chunk.css"
+    "revision": "dd7974f3a5429a349923",
+    "url": "/static/js/main.dd7974f3.chunk.js"
   },
   {
-    "revision": "7eafb2be2c9bfff3fb96",
-    "url": "/static/js/1.7eafb2be.chunk.js"
+    "revision": "0eb2578f5b2e4baa6b6c",
+    "url": "/static/js/1.0eb2578f.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -24,6 +24,14 @@ self.__precacheManifest = [
     "url": "/static/media/dms_s.11583f81.png"
   },
   {
+    "revision": "4b46b05835237616525cd599677cb8ef",
+    "url": "/static/media/dms_t.4b46b058.png"
+  },
+  {
+    "revision": "6942eb831d93d9cf6188d1d4ba35e4fd",
+    "url": "/static/media/dms_b.6942eb83.png"
+  },
+  {
     "revision": "4d3043cee170c17b05f8a8b1980fc711",
     "url": "/static/media/synthwave.4d3043ce.mp4"
   },
@@ -32,20 +40,20 @@ self.__precacheManifest = [
     "url": "/static/media/synthetic.61f56af1.mp3"
   },
   {
-    "revision": "4b46b05835237616525cd599677cb8ef",
-    "url": "/static/media/dms_t.4b46b058.png"
+    "revision": "a827f5ad0029fb27764338983309f88d",
+    "url": "/static/media/window.a827f5ad.png"
   },
   {
-    "revision": "6f2739eb8ba2ea4233e2",
-    "url": "/static/js/main.6f2739eb.chunk.js"
+    "revision": "71e2b0580fac455ad0cb0cfed5228f42",
+    "url": "/static/media/Sheeping Cats Straight.71e2b058.otf"
   },
   {
     "revision": "6cd7aa5218326e7c99410444c0442869",
     "url": "/static/media/Sheeping Cats.6cd7aa52.otf"
   },
   {
-    "revision": "71e2b0580fac455ad0cb0cfed5228f42",
-    "url": "/static/media/Sheeping Cats Straight.71e2b058.otf"
+    "revision": "443a596052ee2f53ae7f7f3d9d03b857",
+    "url": "/static/media/skyline.443a5960.png"
   },
   {
     "revision": "436c9e973898c163af2cc126ea4d48ad",
@@ -68,7 +76,11 @@ self.__precacheManifest = [
     "url": "/static/media/timeburnerbold.32e66b5b.ttf"
   },
   {
-    "revision": "9ffb410c40ef137af29081582dfd0d6b",
+    "revision": "253df830e971d85a8695d44aae420eda",
+    "url": "/static/media/hkit.253df830.png"
+  },
+  {
+    "revision": "06a783e275c8ed89d3f4cdf72b169ae1",
     "url": "/index.html"
   }
 ];
