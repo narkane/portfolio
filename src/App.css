@@ -20,14 +20,16 @@
 
 #skyline {
   /* visibility: hidden; */
-  background: url("./img/skyline.png");
-  background-size: contain;
+  background: url("./img/skyline_tall.png");
+  background-size: cover;
+  background-position: 50% 48%;
   position: absolute;
-  top: 54vh;
+  top: 0px;
   left: 0px;
   height: 100vh;
   width: 100vw;
   z-index: 2;
+  pointer-events: none;
 }
 
 #shadow {
