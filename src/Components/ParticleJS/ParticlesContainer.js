@@ -62,13 +62,13 @@ class ParticlesContainer extends Component {
               },
               move: {
                 enable: true,
-                speed: 1,
+                speed: 0.2,
                 direction: "right",
-                random: true,
+                random: false,
                 straight: false,
                 out_mode: "out",
                 attract: {
-                  enable: true,
+                  enable: false,
                   rotateX: 600,
                   rotateY: 1200
                 }
