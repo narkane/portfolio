@@ -141,7 +141,7 @@ class Header extends Component {
             {this.state.burger ? (
               <div className="dropDown">
                 <div className="tabs">
-                  <button className="dropButt" onClick={this.props.listDP}>
+                  <button className="dropButt" onClick={this.props.showDP}>
                     Devpool List
                   </button>
                   <button className="dropButt">Teacherpool List</button>

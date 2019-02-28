@@ -58,14 +58,16 @@ const login = async (req, res) => {
       res.status(403).json("Incorrect username or password");
     } else {
       req.session.user = {
-        isAdmin: user.isAdmin,
-        id: user.user_id,
-        username: user.username,
-        picture: user.picture,
-        name: user.name,
-        requested: user.amount_requested,
-        received: user.amount_received
+        isAdmin: user.is_admin,
+        id: user.id,
+        username: user.username
+        // picture: user.picture,
+        // name: user.name,
+        // requested: user.amount_requested,
+        // received: user.amount_received
       };
+      // console.log("YOU DID IT! LOGIN!");
+      // console.log(finduser[0]);
       res.status(200).json(req.session.user);
     }
   }
@@ -77,15 +79,23 @@ const joinDPTeam = async (req, res) => {
   const u_id = req.session.user.id;
   const team = req.body.team;
   const desc = req.body.desc;
-  console.log("FDASFADSFDASFA: ");
+  const lead = await db.get_user([req.body.lead]);
+  console.log("user_id: ");
   console.log(u_id);
-  console.log("\nFDASFADSFDASFA: ");
+  console.log("\nlead_id: " + lead[0].id);
 
-  let newDPentry = await db.join_DP_team([team, desc, 1, u_id]);
+  let newDPentry = await db.join_DP_team([team, desc, lead[0].id, u_id]);
   // const user = registereduser[0];
   return res.status(201).json(newDPentry[0]);
 };
 
+const listDPMembers = async (req, res) => {
+  const db = req.app.get("db");
+
+  const findDPusers = await db.list_devpool_members();
+  console.log(findDPusers);
+  res.status(200).json(findDPusers);
+};
 const listDPTeams = async (req, res) => {
   const db = req.app.get("db");
 
@@ -127,6 +137,7 @@ module.exports = {
   login,
   joinDPTeam,
   listDPTeams,
+  listDPMembers,
   adminOnly,
   logout,
   removeUser

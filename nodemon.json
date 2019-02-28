@@ -1,8 +1,5 @@
 {
-  "watch": [
-    "server/",
-    "db/"
-  ],
+  "watch": ["server/", "db/"],
   "env": {
     "NODE_ENV": "development"
   },

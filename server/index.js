@@ -11,7 +11,7 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(`${__dirname}/../build`));
+// app.use(express.static(`${__dirname}/../build`));
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
@@ -27,6 +27,7 @@ app.use(
 );
 
 app.get("/auth/devpool", ac.listDPTeams);
+app.get("/auth/devpool/members", ac.listDPMembers);
 app.get("/auth/logout", ac.logout);
 app.post("/auth/login", ac.login);
 app.post("/auth/register", ac.register);

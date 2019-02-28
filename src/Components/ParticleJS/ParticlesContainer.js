@@ -9,7 +9,7 @@ class ParticlesContainer extends Component {
           params={{
             particles: {
               number: {
-                value: 50,
+                value: 10,
                 density: {
                   enable: true,
                   value_area: 800
@@ -62,7 +62,7 @@ class ParticlesContainer extends Component {
               },
               move: {
                 enable: true,
-                speed: 0.2,
+                speed: 2,
                 direction: "right",
                 random: false,
                 straight: false,

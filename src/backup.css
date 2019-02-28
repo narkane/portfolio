@@ -1,0 +1,50 @@
+.devpool * {
+}
+.devpool {
+  border: 1px groove rgba(0, 255, 0, 1);
+  /* margin: 10px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* flex-grow: 3; */
+  /* flex-grow:  */
+  /* justify-content: center; */
+  /* justify-content: left; */
+
+  /* flex-wrap: wrap; */
+  color: white;
+  position: absolute;
+  top: 11%;
+  left: 2%;
+  /* min-width: 220px; */
+  width: 220px;
+  max-width: 880px;
+  height: max-content !important;
+  max-height: 320px;
+  z-index: 30;
+}
+.devpool-row * {
+  /* border: none; */
+}
+.devpool-row {
+  /* box-shadow: 0 0 20px white; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  /* align-items: flex-start; */
+  font-size: 11pt;
+  border-radius: 50px;
+  font-weight: 700;
+  border: 1px hotpink groove;
+  padding: 5px 8px;
+  margin: 1px 30px 0px 30px;
+  /* min-height: 55px; */
+  height: 100px;
+  /* max-height: 200%; */
+  /* min-width: 220px; */
+  width: 220px;
+  /* max-width: 200%; */
+  position: relative;
+  z-index: 25;
+  left: -15px;
+}

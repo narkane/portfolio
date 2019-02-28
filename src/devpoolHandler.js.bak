@@ -1,0 +1,296 @@
+import React from "react";
+import axios from "axios";
+
+import logo from "./img/dms.png";
+
+var state = {};
+
+const showDPTeams = () => {
+  if (this.state.devpool) {
+    state[devpool] = 0;
+  } else {
+    this.getDPTeams();
+  }
+};
+
+const getDPTeams = () => {
+  axios
+    .get("/auth/devpool")
+    .then(resp => {
+      console.log(resp);
+      if (resp.status == 200) {
+        state[devpool] = resp.data;
+        console.log(this.state.devpool);
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    });
+};
+const getDPMembers = () => {
+  axios
+    .get("/auth/devpool/members")
+    .then(resp => {
+      console.log(resp);
+      if (resp.status == 200) {
+        state[devpoolMembers] = resp.data;
+        console.log(this.state.devpoolMembers);
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    });
+  // this.forceUpdate();
+};
+
+const updateUser = user => {
+  state[user] = user;
+  console.log(this.state.user);
+};
+
+const joinTeam = () => {
+  if (!this.state.teamSelect) {
+    state[teamSelect] = true;
+    this.teamJoinSelector();
+  } else {
+    state[teamSelect] = false;
+  }
+};
+
+const listTeamMembers = sTeam => {
+  let members = {};
+  let retTotal = [];
+  let ret;
+
+  // this.getDPMembers();
+  axios.get("/auth/devpool/members").then(resp => {
+    console.log(resp);
+    if (resp.status == 200) {
+      state[devpoolMembers] = resp.data;
+
+      this.state.devpoolMembers
+        .map((el, index) => {
+          let tn = el.team_name;
+          if (tn == sTeam) {
+            retTotal.push(
+              <div
+                key={index}
+                style={{
+                  background: `rgba(${(Math.pow(el.team_user.length, 2) % 25) *
+                    10}, ${(Math.pow(el.team_user.length, 2) *
+                    el.team_user.charCodeAt(0)) %
+                    256}, ${el.team_user.length * 15}, 0.5`
+                }}
+              >
+                <div id="dev-lead">{el.team_user}</div>
+              </div>
+            );
+
+            console.log(retTotal);
+          }
+          ret = retTotal.map(el => {
+            return el;
+          });
+          ret = <div className="members-area">{ret}</div>;
+          state[membersInSelectedTeamInspect] = ret;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  });
+};
+
+const createTeam = () => {
+  // if (this.state.create) {
+  // state[create: false;
+  return <img src={logo} className="front" />;
+  // } else {
+  //   state[create: true;
+  // }
+};
+
+/* View in fullscreen */
+const openFullscreen = () => {
+  var elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen().catch(err => {
+      console.log(err + ": " + err.message);
+    });
+  } else if (elem.mozRequestFullScreen) {
+    /* Firefox */
+    elem.mozRequestFullScreen().catch(err => {
+      console.log(err + ": " + err.message);
+    });
+  } else if (elem.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen().catch(err => {
+      console.log(err + ": " + err.message);
+    });
+  } else if (elem.msRequestFullscreen) {
+    /* IE/Edge */
+    elem.msRequestFullscreen().catch(err => {
+      console.log(err + ": " + err.message);
+    });
+  }
+};
+
+/* Close fullscreen */
+const closeFullscreen = () => {
+  var elem = document.documentElement;
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE/Edge */
+    document.msExitFullscreen();
+  }
+};
+
+const organizeDP = () => {
+  let teams = {};
+  let ret;
+  let retTotal = [];
+  this.state.devpool.map((el, index) => {
+    // if (teams.length == 0) {
+    //   teams = { el: el.team_name };
+    // }
+    let tn = el.team_name;
+    if (teams[tn] != true) {
+      teams[tn] = true;
+      // teams[i].desc = el.team_desc;
+      // teams[i].leader = { name: el.team_lead };
+      // console.log(ret);
+
+      retTotal.push(
+        <a className="dp-select-team" data-tip data-for="dp-inspect-tip">
+          <div
+            key={index}
+            id={index}
+            className="devpool-row"
+            style={{
+              background: `rgba(${(Math.pow(el.team_name.length, 2) % 25) *
+                10}, ${(Math.pow(el.team_name.length, 2) *
+                el.team_name.charCodeAt(0)) %
+                256}, ${el.team_name.length * 15}, 0.5`
+            }}
+          >
+            <div className="dev-header">
+              {/* <small> */}
+              <div id="dev-team">{`${el.team_name}`}</div>
+              {/* <div id="dev-mid" /> */}
+              <div id="dev-lead">{`[ ${el.team_lead} ]`}</div>
+              {/* </small> */}
+            </div>
+            <div id="dev-desc">
+              <ul>
+                <li>
+                  <font size="1">{el.team_desc}</font>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      );
+
+      // console.log(retTotal);
+    }
+  });
+  ret = retTotal.map((el, index) => {
+    // console.log(el);
+    return el;
+  });
+  ret = <div className="devpool-area"> {ret} </div>;
+  // console.log(ret);
+  return ret;
+};
+
+const teamInspectSelector = () => {
+  if (!this.state.ranInspect && this.state.devpool && !this.state.teamSelect) {
+    console.log("dog");
+    var ret;
+    let devpoolEntry = this.state.devpool;
+    let dpSelect = document.getElementsByClassName("devpool-row");
+    for (let i = 0; i < dpSelect.length; i++) {
+      dpSelect[i].onmouseenter = () => {
+        this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
+        dpSelect[i].style.boxShadow = "0 0 20px orange";
+      };
+      dpSelect[i].onmouseleave = () => {
+        dpSelect[i].style.boxShadow = "none";
+        state[devpoolMembers] = 0;
+      };
+      dpSelect[i].onmousedown = function() {};
+    }
+    state[ranInspect] = true;
+    if (ret) {
+      return ret;
+    }
+  }
+};
+
+const teamJoinSelector = () => {
+  // if (
+  //   document.getElementsByClassName("devpool-row")
+  // ) {
+  let dpSelect = document.getElementsByClassName("devpool-row");
+  let finishJoin = (msg, j) => {
+    console.log(msg);
+    this.getDPMembers(msg.team_name);
+    state[teamSelect] = false;
+    state[ranInspect] = false;
+    dpSelect[j].style.boxShadow = "none";
+  };
+
+  let devpoolEntry = this.state.devpool;
+  for (let i = 0; i < dpSelect.length; i++) {
+    dpSelect[i].onmouseenter = function() {
+      this.style.boxShadow = "0 0 20px white";
+    };
+    dpSelect[i].onmouseleave = function() {
+      this.style.boxShadow = "none";
+    };
+    dpSelect[i].onmousedown = function() {
+      // state[dpSelected]=this.state.devpool[i].team_name;
+      axios
+        .post("/db/join_team", {
+          team: devpoolEntry[dpSelect[i].id].team_name,
+          desc:
+            "New Database item about joining " +
+            devpoolEntry[dpSelect[i].id].team_name,
+          lead: devpoolEntry[dpSelect[i].id].team_lead
+        })
+        .then(resp => {
+          console.log(resp.data);
+          finishJoin(devpoolEntry[i].team_name, i);
+        })
+        .catch(err => {
+          finishJoin(err);
+        });
+    };
+  }
+  // }
+};
+
+const dpAPI = {
+  state,
+  teamJoinSelector,
+  teamInspectSelector,
+  organizeDP,
+  openFullscreen,
+  closeFullscreen,
+  showDPTeams,
+  getDPTeams,
+  getDPMembers,
+  createTeam,
+  listTeamMembers,
+  joinTeam,
+  updateUser
+};
+
+export default dpAPI;

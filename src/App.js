@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Rnd } from "react-rnd";
+import ReactTooltip from "react-tooltip";
 import "./App.css";
 import "./Components/ParticleJS/ParticlesContainer.css";
 import music from "./audio/synthetic.mp3";
@@ -16,23 +16,31 @@ import window from "./img/window.png";
 import introMp4 from "./video/synthwave.mp4";
 import NewsCard from "./Components/NewsCard";
 
+import dpAPI from "./devpoolHandler.js";
+// const dp = require("./devpoolHandler.js").default;
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: {},
       intro: 0
+      // devpool: []
     };
-    this.openFullscreen = this.openFullscreen.bind(this);
-    this.joinTeam = this.joinTeam.bind(this);
+    // this.openFullscreen = this.openFullscreen.bind(this);
+    // this.joinTeam = this.joinTeam.bind(this);
+    // this.createTeam = this.createTeam.bind(this);
     this.startMusic = this.startMusic.bind(this);
-    this.updateUser = this.updateUser.bind(this);
-    this.getDPTeams = this.getDPTeams.bind(this);
+    // this.updateUser = this.updateUser.bind(this);
+    // this.showDPTeams = this.showDPTeams.bind(this);
+    // this.getDPTeams = this.getDPTeams.bind(this);
+    // this.organizeDP = this.organizeDP.bind(this);
+    // this.listTeamMembers = this.listTeamMembers.bind(this);
+    // this.forceUpdate = this.forceUpdate.bind(this);
+    this.dp = new dpAPI(this);
   }
 
   componentDidMount = () => {
-    // this.openFullscreen();
-
     this.myAudio = new Audio(music);
     this.myAudio.addEventListener(
       "ended",
@@ -53,8 +61,10 @@ class App extends Component {
     // this.myVideo.load();
     this.myVideo.ontimeupdate = () => {
       console.log(this.myVideo.currentTime);
-      if (this.myVideo.currentTime >= 1) this.setState({ intro: 1 });
-      if (this.myVideo.currentTime >= 4.5) {
+      if (this.myVideo.currentTime >= 2) {
+        this.setState({ intro: 1 });
+      }
+      if (this.myVideo.currentTime >= 5.5) {
         this.myVideo.pause();
         this.setState({ intro: 2 });
       }
@@ -65,7 +75,7 @@ class App extends Component {
     if (document.getElementById("shadow")) {
       document.getElementById("shadow").remove();
 
-      this.openFullscreen();
+      this.dp.openFullscreen();
 
       this.myAudio
         .play()
@@ -80,86 +90,13 @@ class App extends Component {
     }
   }
 
-  getDPTeams() {
-    if (this.state.devpool) {
-      this.setState({ devpool: null });
-    } else {
-      axios
-        .get("/auth/devpool")
-        .then(resp => {
-          console.log(resp);
-          if (resp.status == 200) {
-            this.setState({ devpool: resp.data });
-            console.log(this.state.devpool);
-          }
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    }
+  componentDidUpdate() {
+    // componentDidMount() {
+    this.dp.teamInspectSelector();
   }
-
-  updateUser(user) {
-    this.setState({
-      user
-    });
-  }
-
-  joinTeam = () => {
-    axios
-      .post("/db/join_team", {
-        team: "Nark's Team",
-        desc: "New Database item about joining Narkane's wonderful team!!!"
-      })
-      .then(resp => {
-        console.log(resp);
-      });
-    this.getDPTeams();
-  };
-
-  /* View in fullscreen */
-  openFullscreen = () => {
-    var elem = document.documentElement;
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen().catch(err => {
-        console.log(err + ": " + err.message);
-      });
-    } else if (elem.mozRequestFullScreen) {
-      /* Firefox */
-      elem.mozRequestFullScreen().catch(err => {
-        console.log(err + ": " + err.message);
-      });
-    } else if (elem.webkitRequestFullscreen) {
-      /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen().catch(err => {
-        console.log(err + ": " + err.message);
-      });
-    } else if (elem.msRequestFullscreen) {
-      /* IE/Edge */
-      elem.msRequestFullscreen().catch(err => {
-        console.log(err + ": " + err.message);
-      });
-    }
-  };
-
-  /* Close fullscreen */
-  closeFullscreen = () => {
-    var elem = document.documentElement;
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      /* Firefox */
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      /* Chrome, Safari and Opera */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      /* IE/Edge */
-      document.msExitFullscreen();
-    }
-  };
 
   render() {
+    console.log(this.dp.state.devpool);
     return (
       <div className="App">
         {this.state.intro == 0 ? (
@@ -196,7 +133,7 @@ class App extends Component {
                 Your browser does not support the video tag.
               </video>
             </div>
-            <Header updateUser={this.updateUser} className="nav" />
+            <Header updateUser={this.dp.updateUser} className="nav" />
             <div id="skyline" />
             <ParticlesContainer />
             <div id="shadow" />
@@ -214,50 +151,77 @@ class App extends Component {
           </>
         ) : (
           <>
-            {this.state.devpool ? (
+            {this.dp.state.devpool ? (
               <Rnd
                 default={{
                   x: 20,
-                  y: 20
+                  y: 20,
+                  height: 360,
+                  width: 640
                 }}
                 className="devpool"
               >
-                <img src={window} id="dp-window" draggable="false " />
-                {this.state.devpool.map(el => {
-                  return (
-                    <div
-                      className="devpool-row"
-                      style={{
-                        background: `rgba(${(Math.pow(el.team_lead.length, 2) %
-                          25) *
-                          10}, ${(Math.pow(el.team_lead.length, 2) *
-                          el.team_lead.charCodeAt(0)) %
-                          256}, ${el.team_lead.length * 15}, 0.5`
-                      }}
-                    >
-                      <div className="dev-header">
-                        {/* <small> */}
-                        <div id="dev-team">{`${el.team_name}`}</div>
-                        {/* <div id="dev-mid" /> */}
-                        <div id="dev-lead">{`[ ${el.team_lead} ]`}</div>
-                        {/* </small> */}
-                      </div>
-                      <div id="dev-desc">
-                        <ul>
-                          <li>
-                            <font size="1">{el.team_desc}</font>
-                          </li>
-                        </ul>
-                      </div>
+                {!this.dp.state.teamSelect && this.dp.state.ranInspect && (
+                  <ReactTooltip
+                    type="dark"
+                    place="right"
+                    effect="float"
+                    id="dp-inspect-tip"
+                  >
+                    <div fontWeight="700">
+                      members
+                      <hr />
+                      {this.dp.state.membersInSelectedTeamInspect &&
+                        this.dp.state.membersInSelectedTeamInspect}
+                      {/* {this.teamInspectSelector()} */}
+                      {/* {console.log(this.teamInspectSelector())} */}
                     </div>
-                  );
-                })}
-                <button onClick={this.joinTeam}>+</button>
+                  </ReactTooltip>
+                )}
+
+                <div class="dp-controls">
+                  <a className="dp-add" data-tip data-for="dp-create-tip">
+                    <button className="dp-add" onClick={this.dp.createTeam}>
+                      +
+                    </button>
+                  </a>
+
+                  <ReactTooltip
+                    place="top"
+                    type="warning"
+                    effect="solid"
+                    id="dp-create-tip"
+                  >
+                    <div style={{ color: "black" }} fontWeight="700">
+                      Add new Team
+                      <br />
+                      (FEATURE UNDER CONSTRUCTION)
+                    </div>
+                  </ReactTooltip>
+
+                  <button class="dp-join" onClick={this.dp.joinTeam}>
+                    Join
+                  </button>
+                  <button
+                    class="dp-close"
+                    onClick={() => {
+                      this.dp.setState({ devpool: 0 });
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
+                {this.dp.organizeDP()}
+                {/* {this.createTeam} */}
+                <img src={window} id="dp-window" draggable="false " />
               </Rnd>
-            ) : null}
+            ) : (
+              this.dp.state.ranInspect &&
+              this.dp.setState({ ranInspect: false })
+            )}
             <Header
-              listDP={this.getDPTeams}
-              updateUser={this.updateUser}
+              showDP={this.dp.showDPTeams}
+              updateUser={this.dp.updateUser}
               className="nav"
             />
 
@@ -265,7 +229,7 @@ class App extends Component {
             <ParticlesContainer />
             <div id="shadow" />
             {/* <div className="corner" /> */}
-            <div className="scene" onClick={this.openFullscreen}>
+            <div className="scene" onClick={this.dp.openFullscreen}>
               <div className="cube">
                 <img src={logo} className="front" />
                 <img src={logo_s} className="side" />

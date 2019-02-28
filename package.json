@@ -2,7 +2,7 @@
   "name": "Software-Development-Committee",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:80",
+  "proxy": "http://localhost:3004",
   "main": "server/index.js",
   "dependencies": {
     "@material-ui/core": "^3.9.0",
@@ -21,6 +21,7 @@
     "react-redux": "^6.0.0",
     "react-rnd": "^9.0.4",
     "react-scripts": "2.0.5",
+    "react-tooltip": "^3.9.2",
     "redux": "^4.0.1"
   },
   "scripts": {
@@ -40,5 +41,8 @@
     "not op_mini all"
   ],
   "keywords": [],
-  "author": "John Thummel"
+  "author": "John Thummel",
+  "devDependencies": {
+    "webpack-dev-server": "^3.2.1"
+  }
 }
