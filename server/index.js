@@ -26,13 +26,13 @@ app.use(
   })
 );
 
-app.get("/auth/devpool", ac.listDPTeams);
-app.get("/auth/devpool/members", ac.listDPMembers);
-app.get("/auth/logout", ac.logout);
-app.post("/auth/login", ac.login);
-app.post("/auth/register", ac.register);
-app.put("/auth/change_name", ac.edit);
-app.delete("/auth/delete", ac.removeUser);
+app.get("/devpool", ac.listDPTeams);
+app.get("/devpool/members", ac.listDPMembers);
+app.get("/logout", ac.logout);
+app.post("/login", ac.login);
+app.post("/register", ac.register);
+app.put("/change_name", ac.edit);
+app.delete("/delete", ac.removeUser);
 
 app.post("/db/join_team", ac.joinDPTeam);
 

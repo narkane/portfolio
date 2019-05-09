@@ -3,12 +3,13 @@
 .App {
   /* position: absolute; */
   /* background-blend-mode: color-burn; */
-
   background: url("./img/city.png");
   background-blend-mode: luminosity;
   background-color: rgba(50, 50, 50, 0.5);
   background-size: cover;
   background-position: 50% 50%;
+  background-position-x: 8px;
+  /* border: 10px inset darkred; */
   min-height: 100vh;
   min-width: 100vw;
   max-height: 100vh;
@@ -19,8 +20,12 @@
 }
 
 #skyline {
+  animation: fadeout 6s ease-in;
   /* visibility: hidden; */
+  opacity: 1;
   background: url("./img/skyline_tall.png");
+  /* background-color: #400044; */
+  /* background-blend-mode: multiply; */
   background-size: cover;
   background-position: 50% 48%;
   position: absolute;
@@ -32,27 +37,47 @@
   pointer-events: none;
 }
 
-#shadow {
+#static {
+  opacity: 0.05;
+  background-blend-mode: color-burn;
   position: absolute;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  background: url("./img/static.gif");
+  background-size: 50% 50%;
+  background-repeat: repeat;
+  background-color: rgba(100, 100, 130, 0.6);
+  z-index: 100;
+  pointer-events: none;
+}
+#shadow {
+  opacity: 0.6;
+  /* background-blend-mode: darken; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  /* background: url("./img/static.gif"); */
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  pointer-events: none;
+  /* animation: fadeout 6s ease-in; */
 }
 
 .dp-controls {
   background-color: rgba(32, 32, 32, 0.3);
   border-radius: 8px;
-  border: 2px groove orangered;
+  border: 2px solid orangered;
   border-width: 0 4px 0 4px;
   display: flex;
   justify-content: center;
   position: relative;
-  top: -19px;
+  top: -3px;
   left: 178px;
-  height: 48px;
+  height: 38px;
   width: 288px;
   z-index: 32;
 }
@@ -74,14 +99,13 @@
   z-index: 30;
 }
 .dp-join {
-  border-color: orangered;
+  border: 0px solid orangered;
   border-width: 0 2px 0 2px;
   border-radius: 8px;
 }
 
 #dp-window {
   position: absolute;
-  cursor: move;
   height: calc(121% - 40px);
   width: 100%;
   top: calc(-17% + 40px);
@@ -96,21 +120,19 @@
   border-radius: 85px;
   float: middle;
   z-index: 24;
+  border: 0px solid #aaaacc;
+  border-width: 0 1px 1px 1px;
+  cursor: url("./img/cursor_b.png") 32 32, move;
+  /* cursor: wait !important; */
 }
 
 .devpool {
-  /* border: 1px groove rgba(0, 255, 0, 1); */
   margin: 0px;
   padding: 0px;
   color: white;
   position: absolute;
-  top: 11%;
-  left: 2%;
-  /* min-width: 220px; */
-  /* width: 660px !important; */
-  /* max-width: 780px; */
-  /* height: 430px !important; */
-  /* max-height: 820px !important; */
+  /* top: 10% !important;
+  left: 5% !important; */
   z-index: 24;
 }
 .devpool-area {
@@ -118,11 +140,13 @@
   padding: 0px 30px 15px 30px;
   display: grid;
   grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 90px 90px 90px;
+  grid-template-rows: 90px 90px;
+  /* grid-row-gap: 2px; */
+  grid-gap: 5px 5px;
   grid-auto-flow: column;
   color: white;
   position: relative;
-  top: 0%;
+  top: 8px;
   left: -10px;
   /* min-width: 220px; */
   /* width: 660px !important; */
@@ -130,6 +154,7 @@
   /* height: 430px !important; */
   /* max-height: 820px !important; */
   z-index: 30;
+  cursor: url("./img/cursor_b.png") 32 32, auto;
 }
 /* .devpool-row[key*="0"] {
   display: grid;
@@ -150,7 +175,7 @@
   margin: 0px;
   padding: 0px;
   font-size: 11pt;
-  border-radius: 5px;
+  border-radius: 50px;
   font-weight: 700;
   /* border: 2px hotpink groove; */
   height: 90px;
@@ -176,7 +201,7 @@
 }
 #dev-desc {
   list-style-position: outside;
-  list-style-image: url(./img/dms_icon.png);
+  list-style-image: url("./img/dms_icon.png");
   height: auto;
   width: calc(100% + 5px);
   float: top;
@@ -222,11 +247,13 @@
 .intro video,
 .introFade video {
   position: absolute;
-  bottom: -15vh;
+  top: 20vh;
   z-index: 100;
 }
 
 #particles canvas {
+  animation: fadeout 4s ease-in;
+  opacity: 0;
   /* -webkit-mask-image: -webkit-radial-gradien */
   -webkit-mask-image: radial-gradient(transparent -500%, black 600%),
     radial-gradient(transparent 45%, black 63%);
@@ -244,8 +271,10 @@
 }
 
 .introFade {
-  /* opacity: 0; */
-  animation: fadeout 3s ease-in;
+  position: absolute;
+  z-index: 100;
+  animation: fadeout 6s ease-in;
+  opacity: 0;
 }
 @font-face {
   font-family: "Sheeping";
@@ -257,10 +286,19 @@
 }
 
 @keyframes fadeout {
-  from {
+  0% {
     opacity: 1;
   }
-  to {
+  25% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
     opacity: 0;
   }
 }

@@ -1,4 +1,6 @@
 * {
+  /* cursor: url("../../img/cursor_b.png") 32 32, move;
+  cursor: url("../../img/cursor_b.png") 32 32, pointer; */
   cursor: url("../../img/cursor.png") 24 24, auto;
   /* border: 1px solid blue; */
   font-family: "Time";
@@ -78,17 +80,19 @@ input {
   display: flex;
   flex-direction: column;
 }
+
 .login input,
-.login input:active,
-.login input:hover {
-  background-color: rgba(200, 120, 0, 0.2);
+.login input:-webkit-autofill {
+  -webkit-transition-delay: 99999s;
   color: #200900;
-  -webkit-mask-image: null;
+  /* -webkit-box-shadow: 0 0 0 100px transparent inset; */
+  background-color: rgba(200, 120, 0, 0);
+  /* -webkit-mask-image: null; */
   border: none;
   border-radius: 10px 10px 40px 40px;
   padding: 0 0 0 0;
   /* color: #ffffff; */
-  text-shadow: 2px 3px 10px white;
+  text-shadow: 2px 3px 10px gold;
   font-size: 32pt;
   font-weight: 1000;
   height: 32pt;
@@ -97,9 +101,14 @@ input {
   margin: 1px auto;
   z-index: 2;
 }
-#passin {
+#passin,
+#passin:-webkit-autofill {
+  /* background-color: black; */
+  /* -webkit-box-shadow: 0 0 0 100px rgba(0, 0, 0, 0.1) inset; */
   margin: auto;
   width: 210px;
+}
+.login input:-webkit-autofill {
 }
 /* .Header input,
 .Header button {

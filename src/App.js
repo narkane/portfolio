@@ -7,6 +7,7 @@ import music from "./audio/synthetic.mp3";
 import Header from "./Components/Header/Header";
 import ParticlesContainer from "./Components/ParticleJS/ParticlesContainer";
 
+import cur_b from "./img/cursor_b.png";
 import logo from "./img/dms.png";
 import logo_s from "./img/dms_s.png";
 import logo_t from "./img/dms_t.png";
@@ -23,20 +24,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {},
       intro: 0
-      // devpool: []
     };
-    // this.openFullscreen = this.openFullscreen.bind(this);
-    // this.joinTeam = this.joinTeam.bind(this);
-    // this.createTeam = this.createTeam.bind(this);
     this.startMusic = this.startMusic.bind(this);
-    // this.updateUser = this.updateUser.bind(this);
-    // this.showDPTeams = this.showDPTeams.bind(this);
-    // this.getDPTeams = this.getDPTeams.bind(this);
-    // this.organizeDP = this.organizeDP.bind(this);
-    // this.listTeamMembers = this.listTeamMembers.bind(this);
-    // this.forceUpdate = this.forceUpdate.bind(this);
+
     this.dp = new dpAPI(this);
   }
 
@@ -51,7 +42,6 @@ class App extends Component {
       false
     );
     this.myAudio.load();
-    // this.myAudio.onloadeddata = () => {
 
     document.addEventListener("click", this.startMusic);
     // };
@@ -60,43 +50,40 @@ class App extends Component {
     // this.myVideo.autoPlay = true;
     // this.myVideo.load();
     this.myVideo.ontimeupdate = () => {
-      console.log(this.myVideo.currentTime);
-      if (this.myVideo.currentTime >= 2) {
+      if (this.myVideo.currentTime >= 2 && this.state.intro != 2) {
         this.setState({ intro: 1 });
       }
-      if (this.myVideo.currentTime >= 5.5) {
-        this.myVideo.pause();
+      if (this.myVideo.currentTime >= 8) {
         this.setState({ intro: 2 });
+        this.myVideo.pause();
+        // if (document.getElementsByClassName("nav")[0]) {
+        // }
       }
     };
   };
 
   startMusic() {
-    if (document.getElementById("shadow")) {
-      document.getElementById("shadow").remove();
+    this.setState({ intro: 2 });
 
-      this.dp.openFullscreen();
+    // this.dp.openFullscreen();
 
-      this.myAudio
-        .play()
-        .catch(e => {
-          console.log(e);
-          throw new Error("BOOP: " + e.message);
-        })
-        .catch(err => {
-          console.log(err);
-          console.log(err.message);
-        });
-    }
+    this.myAudio
+      .play()
+      .catch(e => {
+        console.log(e);
+        throw new Error("BOOP: " + e.message);
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(err.message);
+      });
   }
 
   componentDidUpdate() {
-    // componentDidMount() {
     this.dp.teamInspectSelector();
   }
 
   render() {
-    console.log(this.dp.state.devpool);
     return (
       <div className="App">
         {this.state.intro == 0 ? (
@@ -137,6 +124,7 @@ class App extends Component {
             <div id="skyline" />
             <ParticlesContainer />
             <div id="shadow" />
+            <div id="static" />
             {/* <div className="corner" /> */}
             <div className="scene">
               <div className="cube">
@@ -154,11 +142,12 @@ class App extends Component {
             {this.dp.state.devpool ? (
               <Rnd
                 default={{
-                  x: 20,
-                  y: 20,
-                  height: 360,
+                  x: 100,
+                  y: 100,
+                  height: 240,
                   width: 640
                 }}
+                enableResizing="false"
                 className="devpool"
               >
                 {!this.dp.state.teamSelect && this.dp.state.ranInspect && (
@@ -173,8 +162,6 @@ class App extends Component {
                       <hr />
                       {this.dp.state.membersInSelectedTeamInspect &&
                         this.dp.state.membersInSelectedTeamInspect}
-                      {/* {this.teamInspectSelector()} */}
-                      {/* {console.log(this.teamInspectSelector())} */}
                     </div>
                   </ReactTooltip>
                 )}
@@ -212,13 +199,13 @@ class App extends Component {
                   </button>
                 </div>
                 {this.dp.organizeDP()}
-                {/* {this.createTeam} */}
                 <img src={window} id="dp-window" draggable="false " />
               </Rnd>
             ) : (
               this.dp.state.ranInspect &&
               this.dp.setState({ ranInspect: false })
             )}
+
             <Header
               showDP={this.dp.showDPTeams}
               updateUser={this.dp.updateUser}
@@ -226,9 +213,9 @@ class App extends Component {
             />
 
             <div id="skyline" />
-            <ParticlesContainer />
+            {/* <ParticlesContainer /> */}
             <div id="shadow" />
-            {/* <div className="corner" /> */}
+            <div id="static" />
             <div className="scene" onClick={this.dp.openFullscreen}>
               <div className="cube">
                 <img src={logo} className="front" />

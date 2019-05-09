@@ -47,6 +47,9 @@ class Header extends Component {
           updateLoggedIn(false);
         }
         // return logged;
+        if (document.getElementById("shadow")) {
+          document.getElementById("shadow").remove();
+        }
       });
     // console.log("LOGGED?: " + this.props.loggedIn);
   };

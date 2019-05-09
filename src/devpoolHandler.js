@@ -65,8 +65,9 @@ class dpAPI {
       // this.forceUpdate();
     };
 
-    this.updateUser = user => {
+    this.updateUser = (user, doc) => {
       this.setState({ user: user });
+      doc.getElementById("shadow").remove();
     };
 
     this.joinTeam = () => {
@@ -84,12 +85,13 @@ class dpAPI {
       let ret;
 
       // this.getDPMembers();
-      axios.get("/auth/devpool/members").then(resp => {
-        if (resp.status == 200) {
-          this.setState({ devpoolMembers: resp.data });
+      axios
+        .get("/auth/devpool/members")
+        .then(resp => {
+          if (resp.status == 200) {
+            this.setState({ devpoolMembers: resp.data });
 
-          this.state.devpoolMembers
-            .map((el, index) => {
+            this.state.devpoolMembers.map((el, index) => {
               let tn = el.team_name;
               if (tn == sTeam) {
                 retTotal.push(
@@ -112,12 +114,12 @@ class dpAPI {
               });
               ret = <div className="members-area">{ret}</div>;
               this.setState({ membersInSelectedTeamInspect: ret });
-            })
-            .catch(e => {
-              console.log(e);
             });
-        }
-      });
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
     };
 
     this.createTeam = () => {
@@ -262,6 +264,12 @@ class dpAPI {
       for (let i = 0; i < dpSelect.length; i++) {
         dpSelect[i].onmouseenter = function() {
           this.style.boxShadow = "0 0 20px white";
+          // this.style.cursor =
+          //   "url('http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur'), auto";
+          // for (let j = 0; j < this.childElementCount; j++) {
+          //   this.children[j].style.cursor =
+          //     "url('http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur'), auto";
+          // }
         };
         dpSelect[i].onmouseleave = function() {
           this.style.boxShadow = "none";
