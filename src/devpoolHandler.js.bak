@@ -15,7 +15,7 @@ const showDPTeams = () => {
 
 const getDPTeams = () => {
   axios
-    .get("/auth/devpool")
+    .get("/devpool")
     .then(resp => {
       console.log(resp);
       if (resp.status == 200) {
@@ -29,7 +29,7 @@ const getDPTeams = () => {
 };
 const getDPMembers = () => {
   axios
-    .get("/auth/devpool/members")
+    .get("/devpool/members")
     .then(resp => {
       console.log(resp);
       if (resp.status == 200) {
@@ -63,7 +63,7 @@ const listTeamMembers = sTeam => {
   let ret;
 
   // this.getDPMembers();
-  axios.get("/auth/devpool/members").then(resp => {
+  axios.get("/devpool/members").then(resp => {
     console.log(resp);
     if (resp.status == 200) {
       state[devpoolMembers] = resp.data;

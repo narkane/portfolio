@@ -32,7 +32,7 @@ class dpAPI {
 
     this.getDPTeams = () => {
       axios
-        .get("/auth/devpool")
+        .get("/devpool")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpool: resp.data });
@@ -53,7 +53,7 @@ class dpAPI {
 
     this.getDPMembers = () => {
       axios
-        .get("/auth/devpool/members")
+        .get("/devpool/members")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpoolMembers: resp.data });
@@ -86,7 +86,7 @@ class dpAPI {
 
       // this.getDPMembers();
       axios
-        .get("/auth/devpool/members")
+        .get("/devpool/members")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpoolMembers: resp.data });

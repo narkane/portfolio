@@ -30,7 +30,7 @@ class Header extends Component {
     const { updateLoggedIn } = this.props;
 
     axios
-      .post("/auth/login", {
+      .post("/login", {
         username: u,
         password: p
       })
@@ -56,7 +56,7 @@ class Header extends Component {
 
   register = (u, p) => {
     axios
-      .post("/auth/register", {
+      .post("/register", {
         username: u,
         password: p
       })
@@ -68,7 +68,7 @@ class Header extends Component {
   logout = () => {
     const { updateLoggedIn } = this.props;
 
-    axios.get("/auth/logout").then(resp => {
+    axios.get("/logout").then(resp => {
       alert(resp.data);
       console.log(resp);
       if (resp.status == 200) {
@@ -81,7 +81,7 @@ class Header extends Component {
 
   deleteUser = () => {
     const { updateLoggedIn } = this.props;
-    axios.delete("/auth/delete").then(resp => {
+    axios.delete("/delete").then(resp => {
       alert(resp.data);
       console.log(resp);
       if (resp.status == 200) {
@@ -103,7 +103,7 @@ class Header extends Component {
         if (e.keyCode === 13) {
           console.log(input.value);
           axios
-            .put("/auth/change_name", { username: input.value })
+            .put("/change_name", { username: input.value })
             .then(resp => {
               console.log(resp);
               if ((resp.status = 200)) {
