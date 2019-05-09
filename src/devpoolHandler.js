@@ -32,7 +32,7 @@ class dpAPI {
 
     this.getDPTeams = () => {
       axios
-        .get("/devpool")
+        .get("http://sdc.thummel.site:3004/devpool")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpool: resp.data });
@@ -53,7 +53,7 @@ class dpAPI {
 
     this.getDPMembers = () => {
       axios
-        .get("/devpool/members")
+        .get("http://sdc.thummel.site:3004/devpool/members")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpoolMembers: resp.data });
@@ -86,7 +86,7 @@ class dpAPI {
 
       // this.getDPMembers();
       axios
-        .get("/devpool/members")
+        .get("http://sdc.thummel.site:3004/devpool/members")
         .then(resp => {
           if (resp.status == 200) {
             this.setState({ devpoolMembers: resp.data });
@@ -276,7 +276,7 @@ class dpAPI {
         };
         dpSelect[i].onmousedown = function() {
           axios
-            .post("/db/join_team", {
+            .post("http://sdc.thummel.site:3004/db/join_team", {
               team: devpoolEntry[dpSelect[i].id].team_name,
               desc:
                 "New Database item about joining " +

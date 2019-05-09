@@ -15,7 +15,7 @@ const showDPTeams = () => {
 
 const getDPTeams = () => {
   axios
-    .get("/devpool")
+    .get("http://sdc.thummel.site:3004/devpool")
     .then(resp => {
       console.log(resp);
       if (resp.status == 200) {
@@ -29,7 +29,7 @@ const getDPTeams = () => {
 };
 const getDPMembers = () => {
   axios
-    .get("/devpool/members")
+    .get("http://sdc.thummel.site:3004/devpool/members")
     .then(resp => {
       console.log(resp);
       if (resp.status == 200) {
@@ -63,7 +63,7 @@ const listTeamMembers = sTeam => {
   let ret;
 
   // this.getDPMembers();
-  axios.get("/devpool/members").then(resp => {
+  axios.get("http://sdc.thummel.site:3004/devpool/members").then(resp => {
     console.log(resp);
     if (resp.status == 200) {
       state[devpoolMembers] = resp.data;
@@ -258,7 +258,7 @@ const teamJoinSelector = () => {
     dpSelect[i].onmousedown = function() {
       // state[dpSelected]=this.state.devpool[i].team_name;
       axios
-        .post("/db/join_team", {
+        .post("http://sdc.thummel.site:3004/db/join_team", {
           team: devpoolEntry[dpSelect[i].id].team_name,
           desc:
             "New Database item about joining " +

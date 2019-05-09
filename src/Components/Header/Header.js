@@ -30,7 +30,7 @@ class Header extends Component {
     const { updateLoggedIn } = this.props;
 
     axios
-      .post("/login", {
+      .post("http://sdc.thummel.site:3004/login", {
         username: u,
         password: p
       })
@@ -56,7 +56,7 @@ class Header extends Component {
 
   register = (u, p) => {
     axios
-      .post("/register", {
+      .post("http://sdc.thummel.site:3004/register", {
         username: u,
         password: p
       })
@@ -68,7 +68,7 @@ class Header extends Component {
   logout = () => {
     const { updateLoggedIn } = this.props;
 
-    axios.get("/logout").then(resp => {
+    axios.get("http://sdc.thummel.site:3004/logout").then(resp => {
       alert(resp.data);
       console.log(resp);
       if (resp.status == 200) {
@@ -81,7 +81,7 @@ class Header extends Component {
 
   deleteUser = () => {
     const { updateLoggedIn } = this.props;
-    axios.delete("/delete").then(resp => {
+    axios.delete("http://sdc.thummel.site:3004/delete").then(resp => {
       alert(resp.data);
       console.log(resp);
       if (resp.status == 200) {
@@ -103,7 +103,9 @@ class Header extends Component {
         if (e.keyCode === 13) {
           console.log(input.value);
           axios
-            .put("/change_name", { username: input.value })
+            .put("http://sdc.thummel.site:3004/change_name", {
+              username: input.value
+            })
             .then(resp => {
               console.log(resp);
               if ((resp.status = 200)) {
