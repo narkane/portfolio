@@ -50,11 +50,13 @@ class App extends Component {
     // this.myVideo.autoPlay = true;
     // this.myVideo.load();
     this.myVideo.ontimeupdate = () => {
-      if (this.myVideo.currentTime >= 2 && this.state.intro != 2) {
-        this.setState({ intro: 1 });
-      }
+      // if (this.myVideo.currentTime >= 2 && this.state.intro < 1) {
+      //   this.setState({ intro: 1 });
+      // }
       if (this.myVideo.currentTime >= 8) {
         this.setState({ intro: 2 });
+        // this.myVideo = document.getElementById("video");
+        // this.myVideo.parentNode.removeChild(this.myVideo);
         this.myVideo.pause();
         // if (document.getElementsByClassName("nav")[0]) {
         // }
