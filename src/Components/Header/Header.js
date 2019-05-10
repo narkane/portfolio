@@ -35,9 +35,10 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        console.log(resp.data);
+        console.log("resp.data: " + resp.data);
         if (resp.status === 200) {
-          console.log(resp.status.data);
+          console.log(resp.status.json);
+          console.log(JSON.stringify(resp.status.json));
           //this.setState({ loggedIn: true });
           console.log("yo");
           updateLoggedIn(true);
