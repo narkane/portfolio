@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 import { connect } from "react-redux";
 import { updateLoggedIn } from "../../ducks/reducer";
-import webMethods from "../../Methods/webMethods";
 import NewsCard from "../NewsCard";
+import 'react-toastify/dist/ReactToastify.css';
 import "./Header.css";
+// import webMethods from "../../Methods/webMethods";
 
 class Header extends Component {
   constructor() {
@@ -61,8 +63,16 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        if ((resp.status = 200)) {
-          alert("Registered: " + JSON.stringify(resp.data));
+        if (resp.status == 200) {
+          toast('🦄 "Registered: " + JSON.stringify(resp.data)', {
+            position: "top-right"
+            autoClose: 5000
+            hideProgressBar: false
+            closeOnClick: true
+            pauseOnHover: true
+            draggable: true
+            });
+          alert();
         }
         console.log(JSON.stringify(resp.data));
       });
@@ -119,7 +129,7 @@ class Header extends Component {
             })
             .then(resp => {
               console.log(resp);
-              if ((resp.status = 200)) {
+              if (resp.status == 200) {
                 console.log("YAY new name!");
               }
             });
@@ -147,6 +157,17 @@ class Header extends Component {
         <div className="title">Software Development</div>
         {this.props.loggedIn ? (
           <>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnVisibilityChange
+              draggable
+              pauseOnHover
+            />
             <div className="welcomeMessage" />
             {/* <button onClick={this.logout}>Logout</button> */}
 
