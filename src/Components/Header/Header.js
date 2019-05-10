@@ -37,7 +37,7 @@ class Header extends Component {
       .then(resp => {
         console.log(resp.data);
         if (resp.status === 200) {
-          // console.log(true);
+          console.log(resp.status.data);
           //this.setState({ loggedIn: true });
           console.log("yo");
           updateLoggedIn(true);
