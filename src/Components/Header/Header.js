@@ -83,7 +83,7 @@ class Header extends Component {
   deleteUser = (u, p) => {
     const { updateLoggedIn } = this.props;
     axios
-      .get("http://sdc.thummel.site:3004/delete", {
+      .post("http://sdc.thummel.site:3004/delete", {
         username: u,
         password: p
       })
