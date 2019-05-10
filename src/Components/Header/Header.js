@@ -161,10 +161,9 @@ class Header extends Component {
                   <button className="dropButt">Teacherpool List</button>
                   <button
                     className="dropButt"
-                    onClick={this.deleteUser(
-                      this.state.username,
-                      this.state.password
-                    )}
+                    onClick={() => {
+                      this.deleteUser(this.state.username, this.state.password);
+                    }}
                   >
                     Delete Acct.
                   </button>
