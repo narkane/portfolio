@@ -37,8 +37,7 @@ class Header extends Component {
       .then(resp => {
         console.log("resp.data: " + JSON.stringify(resp.data));
         if (resp.status === 200) {
-          console.log(resp.status.json);
-          console.log(JSON.stringify(resp.status.json));
+          console.log(resp.status);
           //this.setState({ loggedIn: true });
           console.log("yo");
           updateLoggedIn(true);
@@ -62,7 +61,10 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        console.log(resp);
+        if ((resp.status = 200)) {
+          alert("Registered: " + JSON.stringify(resp.data));
+        }
+        console.log(JSON.stringify(resp.data));
       });
   };
 
