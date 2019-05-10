@@ -83,7 +83,7 @@ class Header extends Component {
   deleteUser = (u, p) => {
     const { updateLoggedIn } = this.props;
     axios
-      .delete("http://sdc.thummel.site:3004/delete", {
+      .get("http://sdc.thummel.site:3004/delete", {
         username: u,
         password: p
       })
@@ -94,6 +94,9 @@ class Header extends Component {
           //this.setState({ loggedIn: false });
           updateLoggedIn(false);
         }
+      })
+      .catch(e => {
+        console.log("ERROR: " + e);
       });
     // return logged;
   };
