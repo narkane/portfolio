@@ -79,21 +79,26 @@ class Header extends Component {
     // return logged;
   };
 
-  deleteUser = () => {
+  deleteUser = (u, p) => {
     const { updateLoggedIn } = this.props;
-    axios.delete("http://sdc.thummel.site:3004/delete").then(resp => {
-      alert(resp.data);
-      console.log(resp);
-      if (resp.status == 200) {
-        //this.setState({ loggedIn: false });
-        updateLoggedIn(false);
-      }
-    });
+    axios
+      .delete("http://sdc.thummel.site:3004/delete", {
+        username: u,
+        password: p
+      })
+      .then(resp => {
+        alert(resp.data);
+        console.log(resp);
+        if (resp.status == 200) {
+          //this.setState({ loggedIn: false });
+          updateLoggedIn(false);
+        }
+      });
     // return logged;
   };
 
   componentDidMount = () => {
-    this.login("", "");
+    //this.login("", "");
   };
 
   componentDidUpdate() {
@@ -150,7 +155,13 @@ class Header extends Component {
                     Devpool List
                   </button>
                   <button className="dropButt">Teacherpool List</button>
-                  <button className="dropButt" onClick={this.deleteUser}>
+                  <button
+                    className="dropButt"
+                    onClick={this.deleteUser(
+                      this.state.username,
+                      this.state.password
+                    )}
+                  >
                     Delete Acct.
                   </button>
                   <button className="dropButt" onClick={this.logout}>
