@@ -35,7 +35,7 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        console.log("resp.data: " + resp.data);
+        console.log("resp.data: " + JSON.stringify(resp.data));
         if (resp.status === 200) {
           console.log(resp.status.json);
           console.log(JSON.stringify(resp.status.json));
@@ -88,8 +88,8 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        alert(resp.data);
-        console.log(resp);
+        console.log("deleting");
+        console.log(resp.status + ": " + JSON.stringify(resp.data));
         if (resp.status == 200) {
           //this.setState({ loggedIn: false });
           updateLoggedIn(false);
