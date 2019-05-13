@@ -136,9 +136,15 @@ const joinDPTeam = async (req, res) => {
   console.log(u_id);
   console.log("\nlead_id: " + lead[0].id);
 
-  let newDPentry = await db.join_DP_team([team, desc, lead[0].id, u_id]);
+  if (!checkDPMembers(req, res)) {
+    console.log("Added to team: " + team);
+    let newDPentry = await db.join_DP_team([team, desc, lead[0].id, u_id]);
+    return res.status(201).json(newDPentry[0]);
+  } else {
+    console.log("ALREADY ON TEAM: " + team + "!");
+    return res.status(409).json("USER ALREADY ON TEAM: " + team + "!");
+  }
   // const user = registereduser[0];
-  return res.status(201).json(newDPentry[0]);
 };
 
 const listDPMembers = async (req, res) => {
@@ -147,6 +153,18 @@ const listDPMembers = async (req, res) => {
   const findDPusers = await db.list_devpool_members();
   console.log(findDPusers);
   return res.status(200).json(findDPusers);
+};
+
+const checkDPMembers = async (req, res) => {
+  const db = req.app.get("db");
+
+  const findDPusers = await db.list_devpool_members();
+  console.log(findDPusers);
+  if (findDPusers.user_id == req.session.user.id) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 const listDPTeams = async (req, res) => {
