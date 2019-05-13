@@ -106,7 +106,7 @@ const login = async (req, res) => {
         req.session.user = {
           username: user.username,
           password: req.body.password,
-          user_id: user.id
+          id: user.id
         };
         req.session.save(err => {
           if (!err) {

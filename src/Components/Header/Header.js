@@ -14,7 +14,8 @@ class Header extends Component {
     this.state = {
       username: "",
       password: "",
-      user_id: 0,
+      //id only exists in session
+      //id: 0,
       isAdmin: false,
 
       burger: false
