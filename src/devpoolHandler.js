@@ -287,13 +287,13 @@ class dpAPI {
             .then(resp => {
               console.log("test");
               console.log(resp.status + ": " + JSON.stringify(resp.data));
-              finishJoin(devpoolEntry[i].team_name, i);
             })
             .catch(err => {
               console.log("error: " + err);
-              finishJoin(devpoolEntry[i].team_name, i);
               // finishJoin(err);
             });
+          finishJoin(devpoolEntry[i].team_name, i);
+          this.teamInspectSelector();
         };
       }
       // }
