@@ -136,7 +136,7 @@ const joinDPTeam = async (req, res) => {
   console.log(u_id);
   console.log("\nlead_id: " + lead[0].id);
 
-  if (checkDPMembers(req, res) === false) {
+  if ((await checkDPMembers(req, res)) === false) {
     console.log("Added to team: " + team);
     let newDPentry = await db.join_DP_team([team, desc, lead[0].id, u_id]);
     return res.status(201).json(newDPentry[0]);
@@ -155,10 +155,10 @@ const listDPMembers = async (req, res) => {
   return res.status(200).json(findDPusers);
 };
 
-const checkDPMembers = (req, res) => {
+const checkDPMembers = async (req, res) => {
   const db = req.app.get("db");
 
-  const findDPusers = db.list_devpool_members();
+  const findDPusers = await db.list_devpool_members();
   //const findDPusers = await db.list_devpool_members();
   for (var i = 0; i < findDPusers.length; i++) {
     console.log(findDPusers[i]);
