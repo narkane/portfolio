@@ -234,6 +234,7 @@ class dpAPI {
           dpSelect[i].onmouseenter = () => {
             this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
             dpSelect[i].style.boxShadow = "0 0 20px orange";
+            this.setState({ ranInspect: true });
           };
           dpSelect[i].onmouseleave = () => {
             dpSelect[i].style.boxShadow = "none";
@@ -241,7 +242,6 @@ class dpAPI {
           };
           dpSelect[i].onmousedown = function() {};
         }
-        this.setState({ ranInspect: true });
         if (ret) {
           return ret;
         }
@@ -252,7 +252,6 @@ class dpAPI {
       // if (
       //   document.getElementsByClassName("devpool-row")
       // ) {
-      let dpSelect = document.getElementsByClassName("devpool-row");
       let finishJoin = (msg, j) => {
         this.getDPMembers(msg.team_name);
         this.setState({ teamSelect: false });
@@ -261,10 +260,12 @@ class dpAPI {
       };
 
       let devpoolEntry = this.state.devpool;
+      let dpSelect = document.getElementsByClassName("devpool-row");
       for (let i = 0; i < dpSelect.length; i++) {
         dpSelect[i].onmouseenter = function() {
           this.style.boxShadow = "0 0 20px white";
           this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
+          this.setState({ ranInspect: true });
           // this.style.cursor =
           //   "url('http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur'), auto";
           // for (let j = 0; j < this.childElementCount; j++) {

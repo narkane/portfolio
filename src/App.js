@@ -152,7 +152,7 @@ class App extends Component {
                 enableResizing="false"
                 className="devpool"
               >
-                {!this.dp.state.teamSelect && this.dp.state.ranInspect && (
+                {this.dp.state.ranInspect && (
                   <ReactTooltip
                     type="dark"
                     place="right"
