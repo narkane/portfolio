@@ -78,12 +78,7 @@ const login = async (req, res) => {
   console.log(req.session);
   console.log(req.session.user.username);
 
-  if (
-    !req.body.username &&
-    !req.body.password &&
-    req.session.user.username &&
-    req.session.user.password
-  ) {
+  if (!req.body.username && !req.body.password && req.session.user) {
     console.log("Using cookies for login. . .");
     req.body.username = req.session.user.username;
     console.log(req.body.username);
