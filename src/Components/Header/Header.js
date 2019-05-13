@@ -118,14 +118,10 @@ class Header extends Component {
   };
 
   componentDidMount = () => {
-    axios.get("http://sdc.thummel.site:3004/").then(resp => {
-      console.log(resp);
-      //this.login("", "");
-    });
-    axios.get("http://sdc.thummel.site:3004/").then(resp => {
-      console.log(resp);
-      //this.login("", "");
-    });
+    // axios.get("http://sdc.thummel.site:3004/").then(resp => {
+    //   console.log(resp);
+    // });
+    this.login("", "");
   };
 
   componentDidUpdate() {
