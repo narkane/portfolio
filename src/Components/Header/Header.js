@@ -77,6 +77,7 @@ class Header extends Component {
             }
           );
           console.log(resp.status);
+          this.login("", "");
         }
         console.log(JSON.stringify(resp.data));
       });
