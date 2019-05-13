@@ -227,7 +227,6 @@ class dpAPI {
         this.state.devpool &&
         !this.state.teamSelect
       ) {
-        dpSelect[i].style.boxShadow = "0 0 20px orange";
         var ret;
         let devpoolEntry = this.state.devpool;
         let dpSelect = document.getElementsByClassName("devpool-row");
@@ -294,6 +293,7 @@ class dpAPI {
               console.log("error: " + err);
               // finishJoin(err);
             });
+          dpSelect[i].style.boxShadow = "0 0 20px orange";
           finishJoin(devpoolEntry[i].team_name, i);
           this.teamInspectSelector();
         };
