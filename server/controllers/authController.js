@@ -162,7 +162,10 @@ const checkDPMembers = async (req, res) => {
   //const findDPusers = await db.list_devpool_members();
   for (var i = 0; i < findDPusers.length; i++) {
     console.log(findDPusers[i]);
-    if (findDPusers[i].user_id === req.session.user.id) {
+    if (
+      findDPusers[i].user_id === req.session.user.id &&
+      findDPusers[i].team_name === req.body.team
+    ) {
       return true;
     }
   }
