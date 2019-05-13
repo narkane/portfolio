@@ -257,7 +257,7 @@ class dpAPI {
       let finishJoin = (msg, j) => {
         this.getDPMembers(msg.team_name);
         this.setState({ teamSelect: false });
-        this.setState({ ranInspect: false });
+        // this.setState({ ranInspect: false });
         // dpSelect[j].style.boxShadow = "none";
       };
 
