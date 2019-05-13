@@ -84,21 +84,18 @@ const login = async (req, res) => {
     req.body.password = req.session.user.password;
   }
 
-  const user = await db.get_user([req.body.username]);
-  const existinguser = user[0];
+  const existinguser = await db.get_user([req.body.username]);
+  const user = existinguser[0];
 
   // console.log("find user: " + JSON.stringify(existinguser));
 
-  if (!existinguser) {
+  if (!user) {
     res
       .status(401)
       .json("User not found. Please register as a new user before logging in.");
   } else {
     try {
-      const isAuthenticated = bcrypt.compareSync(
-        req.body.password,
-        existinguser.hash
-      );
+      const isAuthenticated = bcrypt.compareSync(req.body.password, user.hash);
       if (!isAuthenticated) {
         res.status(403).json("Incorrect username or password");
       } else {
@@ -107,8 +104,9 @@ const login = async (req, res) => {
         // isAdmin: user.is_admin,
         // id: user.id,
         req.session.user = {
-          username: existinguser.username,
-          password: req.body.password
+          username: user.username,
+          password: req.body.password,
+          user_id: user.user_id
         };
         req.session.save(err => {
           if (!err) {
@@ -118,7 +116,7 @@ const login = async (req, res) => {
           }
         });
 
-        return res.status(200).json(existinguser);
+        return res.status(200).json(user);
         // return res.sendStatus(200);
       }
     } catch (e) {

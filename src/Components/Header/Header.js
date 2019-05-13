@@ -14,6 +14,7 @@ class Header extends Component {
     this.state = {
       username: "",
       password: "",
+      user_id: 0,
       isAdmin: false,
 
       burger: false
