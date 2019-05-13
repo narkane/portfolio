@@ -243,6 +243,7 @@ class dpAPI {
           };
           dpSelect[i].onmousedown = () => {};
         }
+
         if (ret) {
           return ret;
         }
@@ -292,16 +293,19 @@ class dpAPI {
             .then(resp => {
               console.log("test");
               console.log(resp.status + ": " + JSON.stringify(resp.data));
+
+              this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
               dpSelect[i].style.boxShadow = "0 0 20px orange";
+              this.setState({ ranInspect: true });
               finishJoin(devpoolEntry[i].team_name, i);
-              this.teamInspectSelector();
             })
             .catch(err => {
               console.log("error: " + err);
               // finishJoin(err);
+              this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
               dpSelect[i].style.boxShadow = "0 0 20px orange";
+              this.setState({ ranInspect: true });
               finishJoin(devpoolEntry[i].team_name, i);
-              this.teamInspectSelector();
             });
         };
       }
