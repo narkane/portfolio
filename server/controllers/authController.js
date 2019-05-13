@@ -73,8 +73,10 @@ const edit = async (req, res) => {
 
 const login = async (req, res) => {
   const db = req.app.get("db");
-  console.log("body: " + req.body.username);
+  console.log("body: ");
+  console.log(req.body.username);
   console.log(req.session);
+  console.log(req.session.username);
 
   if (
     !req.body.username &&
