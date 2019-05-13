@@ -275,6 +275,7 @@ class dpAPI {
         };
         dpSelect[i].onmouseleave = function() {
           this.style.boxShadow = "none";
+          this.setState({ devpoolMembers: 0 });
         };
         dpSelect[i].onmousedown = function() {
           console.log("JOIN TEAM: " + devpoolEntry[dpSelect[i].id].team_name);
