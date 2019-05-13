@@ -224,7 +224,7 @@ class dpAPI {
 
     this.teamInspectSelector = () => {
       if (
-        !this.state.ranInspect &&
+        // !this.state.ranInspect &&
         this.state.devpool &&
         !this.state.teamSelect
       ) {
