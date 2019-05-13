@@ -257,7 +257,7 @@ class dpAPI {
         this.getDPMembers(msg.team_name);
         this.setState({ teamSelect: false });
         this.setState({ ranInspect: false });
-        dpSelect[j].style.boxShadow = "none";
+        // dpSelect[j].style.boxShadow = "none";
       };
 
       let devpoolEntry = this.state.devpool;

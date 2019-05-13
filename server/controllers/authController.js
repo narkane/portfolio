@@ -159,12 +159,13 @@ const checkDPMembers = async (req, res) => {
   const db = req.app.get("db");
 
   const findDPusers = await db.list_devpool_members();
-  console.log(findDPusers);
-  if (findDPusers.user_id == req.session.user.id) {
-    return true;
-  } else {
-    return false;
+  for (var i = 0; i < findDPusers.length; i++) {
+    console.log(findDPusers[i]);
+    if (findDPusers[i].user_id == req.session.user.id) {
+      return true;
+    }
   }
+  return false;
 };
 
 const listDPTeams = async (req, res) => {
