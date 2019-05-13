@@ -117,11 +117,14 @@ class Header extends Component {
     // return logged;
   };
 
+  componentWillMount = () => {
+    this.login("", "");
+  };
+
   componentDidMount = () => {
     // axios.get("http://sdc.thummel.site:3004/").then(resp => {
     //   console.log(resp);
     // });
-    // this.login("", "");
   };
 
   componentDidUpdate() {

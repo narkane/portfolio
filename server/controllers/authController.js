@@ -76,7 +76,7 @@ const login = async (req, res) => {
   console.log("body: " + req.body.username);
   console.log(req.session);
 
-  if (!req.body.username && req.session.username) {
+  if (req.body.username == "" && req.session.username) {
     req.body.username = req.session.username;
     console.log(req.body.username);
   }

@@ -49,7 +49,7 @@ app.use(
       path: "/",
       domain: "sdc.thummel.site",
       secure: "auto",
-      maxAge: 60000
+      maxAge: 15 * 60 * 1000
     }
   })
 );
@@ -73,9 +73,9 @@ app.use(
 //   }
 // };
 
-// // route for Home-Page
+// route for Home-Page
 // app.get("/", sessionChecker, (req, res) => {
-//   res.redirect("/login");
+//   res.redirect("http://sdc.thummel.site:3004/login");
 // });
 
 // app.get("/", function(req, res) {
