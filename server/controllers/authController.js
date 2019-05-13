@@ -77,11 +77,12 @@ const login = async (req, res) => {
   console.log(req.session);
 
   if (
-    req.body.username === "" &&
-    req.body.password === "" &&
+    !req.body.username &&
+    !req.body.password &&
     req.session.username &&
     req.session.password
   ) {
+    console.log("Using cookies for login. . .");
     req.body.username = req.session.username;
     console.log(req.body.username);
     req.body.password = req.session.password;
