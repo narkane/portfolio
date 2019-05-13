@@ -227,6 +227,7 @@ class dpAPI {
         this.state.devpool &&
         !this.state.teamSelect
       ) {
+        dpSelect[i].style.boxShadow = "0 0 20px orange";
         var ret;
         let devpoolEntry = this.state.devpool;
         let dpSelect = document.getElementsByClassName("devpool-row");
@@ -264,6 +265,7 @@ class dpAPI {
       for (let i = 0; i < dpSelect.length; i++) {
         dpSelect[i].onmouseenter = function() {
           this.style.boxShadow = "0 0 20px white";
+          this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
           // this.style.cursor =
           //   "url('http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur'), auto";
           // for (let j = 0; j < this.childElementCount; j++) {
