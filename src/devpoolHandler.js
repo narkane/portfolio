@@ -291,6 +291,7 @@ class dpAPI {
             })
             .catch(err => {
               console.log("error: " + err);
+              finishJoin(devpoolEntry[i].team_name, i);
               // finishJoin(err);
             });
         };
