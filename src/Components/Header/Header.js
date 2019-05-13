@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { connect } from "react-redux";
 import { updateLoggedIn } from "../../ducks/reducer";
 import NewsCard from "../NewsCard";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
 // import webMethods from "../../Methods/webMethods";
 
@@ -26,6 +26,7 @@ class Header extends Component {
     //this.change_name = this.change_name.bind(this);
     // webMethods = new webMethods();
     // const { updateLoggedIn } = this.props;
+    axios.defaults.withCredentials = true;
   }
 
   login = (u, p) => {
@@ -63,16 +64,19 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        if (resp.status == 200) {
-          toast('🦄 "Registered: " + JSON.stringify(resp.data)', {
-            position: "top-right"
-            autoClose: 5000
-            hideProgressBar: false
-            closeOnClick: true
-            pauseOnHover: true
-            draggable: true
-            });
-          alert();
+        if (resp.status === 201) {
+          toast.success(
+            "Successfully registered: " + JSON.stringify(resp.data),
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true
+            }
+          );
+          console.log(resp.status);
         }
         console.log(JSON.stringify(resp.data));
       });
@@ -82,9 +86,9 @@ class Header extends Component {
     const { updateLoggedIn } = this.props;
 
     axios.get("http://sdc.thummel.site:3004/logout").then(resp => {
-      alert(resp.data);
       console.log(resp);
-      if (resp.status == 200) {
+      if (resp.status === 200) {
+        console.log("loggin out");
         //this.setState({ loggedIn: false });
         updateLoggedIn(false);
       }
@@ -100,9 +104,9 @@ class Header extends Component {
         password: p
       })
       .then(resp => {
-        console.log("deleting");
         console.log(resp.status + ": " + JSON.stringify(resp.data));
-        if (resp.status == 200) {
+        if (resp.status === 200) {
+          console.log("deleting");
           //this.setState({ loggedIn: false });
           updateLoggedIn(false);
         }
@@ -114,7 +118,14 @@ class Header extends Component {
   };
 
   componentDidMount = () => {
-    //this.login("", "");
+    axios.get("http://sdc.thummel.site:3004/").then(resp => {
+      console.log(resp);
+      //this.login("", "");
+    });
+    axios.get("http://sdc.thummel.site:3004/").then(resp => {
+      console.log(resp);
+      //this.login("", "");
+    });
   };
 
   componentDidUpdate() {
@@ -129,7 +140,7 @@ class Header extends Component {
             })
             .then(resp => {
               console.log(resp);
-              if (resp.status == 200) {
+              if (resp.status === 200) {
                 console.log("YAY new name!");
               }
             });
@@ -154,20 +165,10 @@ class Header extends Component {
     const { username, password } = this.state;
     return (
       <div className="Header">
+        <ToastContainer style={{ color: "black", fontWeight: 700 }} />
         <div className="title">Software Development</div>
         {this.props.loggedIn ? (
           <>
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnVisibilityChange
-              draggable
-              pauseOnHover
-            />
             <div className="welcomeMessage" />
             {/* <button onClick={this.logout}>Logout</button> */}
 

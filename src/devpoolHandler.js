@@ -275,6 +275,7 @@ class dpAPI {
           this.style.boxShadow = "none";
         };
         dpSelect[i].onmousedown = function() {
+          console.log("JOIN TEAM: " + devpoolEntry[dpSelect[i].id].team_name);
           axios
             .post("http://sdc.thummel.site:3004/db/join_team", {
               team: devpoolEntry[dpSelect[i].id].team_name,
@@ -284,10 +285,13 @@ class dpAPI {
               lead: devpoolEntry[dpSelect[i].id].team_lead
             })
             .then(resp => {
+              console.log("test");
+              console.log(resp.status + ": " + JSON.stringify(resp.data));
               finishJoin(devpoolEntry[i].team_name, i);
             })
             .catch(err => {
-              finishJoin(err);
+              console.log("error: " + err);
+              // finishJoin(err);
             });
         };
       }
