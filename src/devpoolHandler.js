@@ -241,7 +241,7 @@ class dpAPI {
             dpSelect[i].style.boxShadow = "none";
             this.setState({ devpoolMembers: 0 });
           };
-          dpSelect[i].onmousedown = function() {};
+          dpSelect[i].onmousedown = () => {};
         }
         if (ret) {
           return ret;
@@ -263,7 +263,7 @@ class dpAPI {
       let devpoolEntry = this.state.devpool;
       let dpSelect = document.getElementsByClassName("devpool-row");
       for (let i = 0; i < dpSelect.length; i++) {
-        dpSelect[i].onmouseenter = function() {
+        dpSelect[i].onmouseenter = () => {
           this.style.boxShadow = "0 0 20px white";
           this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
           this.setState({ ranInspect: true });
@@ -274,12 +274,12 @@ class dpAPI {
           //     "url('http://wiki-devel.sugarlabs.org/images/e/e2/Arrow.cur'), auto";
           // }
         };
-        dpSelect[i].onmouseleave = function() {
+        dpSelect[i].onmouseleave = () => {
           this.style.boxShadow = "none";
           this.setState({ devpoolMembers: 0 });
           this.setState({ membersInSelectedTeamInspect: 0 });
         };
-        dpSelect[i].onmousedown = function() {
+        dpSelect[i].onmousedown = () => {
           console.log("JOIN TEAM: " + devpoolEntry[dpSelect[i].id].team_name);
           axios
             .post("http://sdc.thummel.site:3004/db/join_team", {
@@ -292,14 +292,17 @@ class dpAPI {
             .then(resp => {
               console.log("test");
               console.log(resp.status + ": " + JSON.stringify(resp.data));
+              dpSelect[i].style.boxShadow = "0 0 20px orange";
+              finishJoin(devpoolEntry[i].team_name, i);
+              this.teamInspectSelector();
             })
             .catch(err => {
               console.log("error: " + err);
               // finishJoin(err);
+              dpSelect[i].style.boxShadow = "0 0 20px orange";
+              finishJoin(devpoolEntry[i].team_name, i);
+              this.teamInspectSelector();
             });
-          dpSelect[i].style.boxShadow = "0 0 20px orange";
-          finishJoin(devpoolEntry[i].team_name, i);
-          this.teamInspectSelector();
         };
       }
       // }
