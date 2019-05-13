@@ -264,7 +264,7 @@ class dpAPI {
       let dpSelect = document.getElementsByClassName("devpool-row");
       for (let i = 0; i < dpSelect.length; i++) {
         dpSelect[i].onmouseenter = () => {
-          this.style.boxShadow = "0 0 20px white";
+          dpSelect[i].style.boxShadow = "0 0 20px white";
           this.listTeamMembers(devpoolEntry[dpSelect[i].id].team_name);
           this.setState({ ranInspect: true });
           // this.style.cursor =
@@ -275,7 +275,7 @@ class dpAPI {
           // }
         };
         dpSelect[i].onmouseleave = () => {
-          this.style.boxShadow = "none";
+          dpSelect[i].style.boxShadow = "none";
           this.setState({ devpoolMembers: 0 });
           this.setState({ membersInSelectedTeamInspect: 0 });
         };
