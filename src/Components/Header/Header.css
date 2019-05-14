@@ -48,6 +48,7 @@ input {
 .nav,
 .nav * {
   cursor: url("../../img/cursor_b.png") 32 32, auto;
+  z-index: 50;
   /* border: 1px solid green; */
 }
 .nav {
@@ -58,7 +59,6 @@ input {
   position: absolute;
   top: calc(38vh - 240px);
   left: calc(50vw - 260px);
-  z-index: 2;
   /* z-index: 1; */
 }
 .loginContainer {
