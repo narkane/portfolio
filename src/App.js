@@ -154,7 +154,14 @@ class App extends Component {
                 </div>
               </ReactTooltip>
 
-              <Bounce bottom>
+              <Bounce
+                bottom
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  position: "relative"
+                }}
+              >
                 <a className="dp-add" data-tip data-for="dp-create-tip">
                   <button className="dp-add" onClick={this.dp.createTeam}>
                     +

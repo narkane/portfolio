@@ -77,9 +77,9 @@
   border-radius: 8px;
   border: 2px solid orangered;
   border-width: 0 4px 0 4px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  position: relative;
+  position: relative; */
   top: -3px;
   left: 178px;
   height: 38px;
