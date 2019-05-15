@@ -114,67 +114,69 @@ class App extends Component {
         )}
 
         {this.dp.state.devpool ? (
-          <Rnd
-            default={{
-              x: 100,
-              y: 100,
-              height: 240,
-              width: 640
-            }}
-            enableResizing="false"
-            className="devpool"
-          >
-            {this.dp.state.ranInspect && (
-              <ReactTooltip
-                type="dark"
-                place="right"
-                effect="float"
-                id="dp-inspect-tip"
-              >
-                <div fontWeight="700">
-                  members
-                  <hr />
-                  {this.dp.state.membersInSelectedTeamInspect &&
-                    this.dp.state.membersInSelectedTeamInspect}
-                </div>
-              </ReactTooltip>
-            )}
+          <Bounce bottom>
+            <Rnd
+              default={{
+                x: 100,
+                y: 100,
+                height: 240,
+                width: 640
+              }}
+              enableResizing="false"
+              className="devpool"
+            >
+              {this.dp.state.ranInspect && (
+                <ReactTooltip
+                  type="dark"
+                  place="right"
+                  effect="float"
+                  id="dp-inspect-tip"
+                >
+                  <div fontWeight="700">
+                    members
+                    <hr />
+                    {this.dp.state.membersInSelectedTeamInspect &&
+                      this.dp.state.membersInSelectedTeamInspect}
+                  </div>
+                </ReactTooltip>
+              )}
 
-            <div class="dp-controls">
-              <a className="dp-add" data-tip data-for="dp-create-tip">
-                <button className="dp-add" onClick={this.dp.createTeam}>
-                  +
+              <div class="dp-controls">
+                <a className="dp-add" data-tip data-for="dp-create-tip">
+                  <button className="dp-add" onClick={this.dp.createTeam}>
+                    +
+                  </button>
+                </a>
+
+                <ReactTooltip
+                  place="top"
+                  type="warning"
+                  effect="solid"
+                  id="dp-create-tip"
+                >
+                  <div style={{ color: "black" }} fontWeight="700">
+                    Add new Team
+                    <br />
+                    (FEATURE UNDER CONSTRUCTION)
+                  </div>
+                </ReactTooltip>
+
+                <button class="dp-join" onClick={this.dp.joinTeam}>
+                  Join
                 </button>
-              </a>
-
-              <ReactTooltip
-                place="top"
-                type="warning"
-                effect="solid"
-                id="dp-create-tip"
-              >
-                <div style={{ color: "black" }} fontWeight="700">
-                  Add new Team
-                  <br />
-                  (FEATURE UNDER CONSTRUCTION)
-                </div>
-              </ReactTooltip>
-
-              <button class="dp-join" onClick={this.dp.joinTeam}>
-                Join
-              </button>
-              <button
-                class="dp-close"
-                onClick={() => {
-                  this.dp.setState({ devpool: 0 });
-                }}
-              >
-                x
-              </button>
-            </div>
-            {this.dp.organizeDP()}
-            <img src={windowdp} id="dp-window" draggable="false " />
-          </Rnd>
+                <button
+                  class="dp-close"
+                  onClick={() => {
+                    this.dp.setState({ devpool: 0 });
+                  }}
+                >
+                  x
+                </button>
+              </div>
+              {this.dp.organizeDP()}
+              <img src={windowdp} id="dp-window" draggable="false " />
+            </Rnd>
+          </Bounce>
         ) : (
           this.dp.state.ranInspect && this.dp.setState({ ranInspect: false })
         )}
