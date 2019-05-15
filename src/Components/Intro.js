@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import introMp4 from "../video/synthwave.mp4";
+import introMp4 from "../video/footagecrate-go-style1.mp4"; //../video/synthwave.mp4";
 import { findDOMNode } from "react-dom";
 
 class Intro extends React.Component {
