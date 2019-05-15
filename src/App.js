@@ -154,32 +154,32 @@ class App extends Component {
                 </div>
               </ReactTooltip>
 
-              <Bounce
+              {/* <Bounce
                 bottom
                 style={{
                   display: "flex",
                   justifyContent: "center",
                   position: "relative"
                 }}
-              >
-                <a className="dp-add" data-tip data-for="dp-create-tip">
-                  <button className="dp-add" onClick={this.dp.createTeam}>
-                    +
-                  </button>
-                </a>
+              > */}
+              <a className="dp-add" data-tip data-for="dp-create-tip">
+                <button className="dp-add" onClick={this.dp.createTeam}>
+                  +
+                </button>
+              </a>
 
-                <button class="dp-join" onClick={this.dp.joinTeam}>
-                  Join
-                </button>
-                <button
-                  class="dp-close"
-                  onClick={() => {
-                    this.dp.setState({ devpool: 0 });
-                  }}
-                >
-                  x
-                </button>
-              </Bounce>
+              <button class="dp-join" onClick={this.dp.joinTeam}>
+                Join
+              </button>
+              <button
+                class="dp-close"
+                onClick={() => {
+                  this.dp.setState({ devpool: 0 });
+                }}
+              >
+                x
+              </button>
+              {/* </Bounce> */}
             </div>
             <Bounce bottom>
               {this.dp.organizeDP()}
