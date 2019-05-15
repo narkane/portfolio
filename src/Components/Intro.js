@@ -65,7 +65,7 @@ class Intro extends React.Component {
       <div
         style={{
           opacity: this.state.visible,
-          transition: "opacity 1.5s ease-in 1s"
+          transition: "opacity 1.5s ease-in"
         }}
         className="intro"
       >

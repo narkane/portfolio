@@ -29,7 +29,7 @@ class App extends Component {
       intro: 1
     };
     this.startMusic = this.startMusic.bind(this);
-
+    this.loaded = this.loaded.bind(this);
     this.dp = new dpAPI(this);
   }
 
@@ -47,9 +47,9 @@ class App extends Component {
 
     document.addEventListener("click", this.startMusic);
 
-    setTimeout(() => {
-      this.setState({ intro: 0 });
-    }, 4500);
+    // setTimeout(() => {
+    //   this.setState({ intro: 0 });
+    // }, 4500);
   };
 
   startMusic() {
@@ -73,9 +73,20 @@ class App extends Component {
     this.dp.teamInspectSelector();
   }
 
+  loaded() {
+    this.setState({ intro: 0 });
+  }
+
   render() {
     return (
-      <div className="App">
+      <div
+        className="App"
+        onLoad={this.loaded}
+        onError={() => {
+          alert("ERROR LOADING!");
+          window.location.reload(true);
+        }}
+      >
         <Intro visibility={this.state.intro} />
         <>
           {this.dp.state.devpool ? (
