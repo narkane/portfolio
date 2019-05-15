@@ -168,7 +168,7 @@ class Header extends Component {
     return (
       <div className="Header">
         <ToastContainer style={{ color: "black", fontWeight: 700 }} />
-        <div className="title">Software Development</div>
+        {/* <div className="title">Software Development</div> */}
         {this.props.loggedIn ? (
           <>
             <div className="welcomeMessage" />
