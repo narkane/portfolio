@@ -13,7 +13,7 @@ import logo from "./img/dms.png";
 import logo_s from "./img/dms_s.png";
 import logo_t from "./img/dms_t.png";
 import logo_b from "./img/dms_b.png";
-import window from "./img/window.png";
+import windowdp from "./img/window.png";
 
 import NewsCard from "./Components/NewsCard";
 
@@ -44,6 +44,8 @@ class App extends Component {
       false
     );
     this.myAudio.load();
+
+    window.addEventListener("load", this.loaded);
 
     document.addEventListener("click", this.startMusic);
 
@@ -81,11 +83,11 @@ class App extends Component {
     return (
       <div
         className="App"
-        onLoad={this.loaded}
-        onError={() => {
-          alert("ERROR LOADING!");
-          window.location.reload(true);
-        }}
+        // onLoad={this.loaded}
+        // onError={() => {
+        //   alert("ERROR LOADING!");
+        //   window.location.reload(true);
+        // }}
       >
         <Intro visibility={this.state.intro} />
         <>
@@ -149,7 +151,7 @@ class App extends Component {
                 </button>
               </div>
               {this.dp.organizeDP()}
-              <img src={window} id="dp-window" draggable="false " />
+              <img src={windowdp} id="dp-window" draggable="false " />
             </Rnd>
           ) : (
             this.dp.state.ranInspect && this.dp.setState({ ranInspect: false })
