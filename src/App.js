@@ -140,26 +140,26 @@ class App extends Component {
               </ReactTooltip>
             )}
 
-            <Bounce bottom>
-              <div class="dp-controls">
+            <div class="dp-controls">
+              <ReactTooltip
+                place="top"
+                type="warning"
+                effect="solid"
+                id="dp-create-tip"
+              >
+                <div style={{ color: "black" }} fontWeight="700">
+                  Add new Team
+                  <br />
+                  (FEATURE UNDER CONSTRUCTION)
+                </div>
+              </ReactTooltip>
+
+              <Bounce bottom>
                 <a className="dp-add" data-tip data-for="dp-create-tip">
                   <button className="dp-add" onClick={this.dp.createTeam}>
                     +
                   </button>
                 </a>
-
-                <ReactTooltip
-                  place="top"
-                  type="warning"
-                  effect="solid"
-                  id="dp-create-tip"
-                >
-                  <div style={{ color: "black" }} fontWeight="700">
-                    Add new Team
-                    <br />
-                    (FEATURE UNDER CONSTRUCTION)
-                  </div>
-                </ReactTooltip>
 
                 <button class="dp-join" onClick={this.dp.joinTeam}>
                   Join
@@ -172,7 +172,9 @@ class App extends Component {
                 >
                   x
                 </button>
-              </div>
+              </Bounce>
+            </div>
+            <Bounce bottom>
               {this.dp.organizeDP()}
               <img src={windowdp} id="dp-window" draggable="false " />
             </Bounce>
