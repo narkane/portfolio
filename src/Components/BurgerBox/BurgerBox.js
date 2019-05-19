@@ -1,4 +1,4 @@
-import { React, Component } from "react";
+import React, { Component } from "react";
 import NewsCard from "../NewsCard";
 
 class BurgerBox extends Component {
