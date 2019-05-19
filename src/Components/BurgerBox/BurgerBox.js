@@ -8,6 +8,7 @@ class BurgerBox extends Component {
     this.state = {
       burger: false
     };
+    this.toggleBurg = this.toggleBurg.bind(this);
   }
 
   toggleBurg = () => {

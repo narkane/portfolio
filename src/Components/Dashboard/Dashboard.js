@@ -15,7 +15,6 @@ class Dashboard extends Component {
     super(props);
     this.state = {};
 
-    this.toggleBurg = this.toggleBurg.bind(this);
     this.logout = this.logout.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
     //this.change_name = this.change_name.bind(this);
