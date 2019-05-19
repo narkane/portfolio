@@ -9,8 +9,8 @@ import "./App.css";
 import "./Components/ParticleJS/ParticlesContainer.css";
 import music from "./audio/synthetic.mp3";
 import Header from "./Components/Header/Header";
-import Intro from "./Components/Intro";
-import ParticlesContainer from "./Components/ParticleJS/ParticlesContainer";
+import Intro from "./Components/Intro/Intro";
+// import ParticlesContainer from "./Components/Intro/ParticleJS/ParticlesContainer";
 
 import cur_b from "./img/cursor_b.png";
 import logo from "./img/dms.png";
@@ -44,7 +44,7 @@ class App extends Component {
       "ended",
       function() {
         this.currentTime = 0;
-        this.play();
+        //this.play();
       },
       false
     );
@@ -53,10 +53,6 @@ class App extends Component {
     window.addEventListener("load", this.loaded);
 
     document.addEventListener("click", this.startMusic);
-
-    // setTimeout(() => {
-    // this.setState({ intro: 0 });
-    // }, 4500);
   };
 
   startMusic() {
@@ -154,14 +150,6 @@ class App extends Component {
                 </div>
               </ReactTooltip>
 
-              {/* <Bounce
-                bottom
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  position: "relative"
-                }}
-              > */}
               <a className="dp-add" data-tip data-for="dp-create-tip">
                 <button className="dp-add" onClick={this.dp.createTeam}>
                   +
@@ -179,7 +167,6 @@ class App extends Component {
               >
                 x
               </button>
-              {/* </Bounce> */}
             </div>
             <Bounce bottom>
               {this.dp.organizeDP()}

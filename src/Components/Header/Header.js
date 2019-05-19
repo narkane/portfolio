@@ -3,10 +3,15 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { connect } from "react-redux";
 import { updateLoggedIn } from "../../ducks/reducer";
-import NewsCard from "../NewsCard";
+
+import BurgerBox from "../BurgerBox/BurgerBox";
+
+// import webMethods from "../../Methods/webMethods";
 import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
-// import webMethods from "../../Methods/webMethods";
+
+import clickMp3 from "../../audio/click.mp3";
+import submitMp3 from "../../audio/ask.mp3";
 
 class Header extends Component {
   constructor() {
@@ -20,6 +25,11 @@ class Header extends Component {
 
       burger: false
     };
+
+    this.clickA = new Audio(clickMp3);
+    this.submitA = new Audio(submitMp3);
+    this.quickAudio = this.quickAudio.bind(this);
+
     this.toggleBurg = this.toggleBurg.bind(this);
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
@@ -30,6 +40,14 @@ class Header extends Component {
     // const { updateLoggedIn } = this.props;
     axios.defaults.withCredentials = true;
   }
+
+  quickAudio = sound => {
+    if (!sound.paused) {
+      sound.pause();
+    }
+    sound.currentTime = 0;
+    sound.play();
+  };
 
   login = (u, p) => {
     const { updateLoggedIn } = this.props;
@@ -79,6 +97,9 @@ class Header extends Component {
             }
           );
           console.log(resp.status);
+
+          //now login using blank user:pass
+          //which is login flag for using cookies
           this.login("", "");
         }
         console.log(JSON.stringify(resp.data));
@@ -170,39 +191,7 @@ class Header extends Component {
         <ToastContainer style={{ color: "black", fontWeight: 700 }} />
         {/* <div className="title">Software Development</div> */}
         {this.props.loggedIn ? (
-          <>
-            <div className="welcomeMessage" />
-            {/* <button onClick={this.logout}>Logout</button> */}
-
-            <div className="burgerbox" onClick={this.toggleBurg}>
-              &#9776;
-            </div>
-
-            {this.state.burger ? (
-              <div className="dropDown">
-                <div className="tabs">
-                  <button className="dropButt" onClick={this.props.showDP}>
-                    Devpool List
-                  </button>
-                  <button className="dropButt">Teacherpool List</button>
-                  <button
-                    className="dropButt"
-                    onClick={() => {
-                      this.deleteUser(this.state.username, this.state.password);
-                    }}
-                  >
-                    Delete Acct.
-                  </button>
-                  <button className="dropButt" onClick={this.logout}>
-                    Logout
-                  </button>
-                </div>
-                <NewsCard />
-                {/* </NewsCard> */}
-                {/* <div width="400" height="400" />; */}
-              </div>
-            ) : null}
-          </>
+          <BurgerBox />
         ) : (
           <div className="nav">
             <div className="loginContainer">
@@ -211,19 +200,37 @@ class Header extends Component {
                   type="text"
                   placeholder="Username"
                   value={username}
-                  onChange={e => this.handleUsernameInput(e.target.value)}
+                  onChange={e => {
+                    this.quickAudio(this.clickA);
+                    this.handleUsernameInput(e.target.value);
+                  }}
+                  onKeyDown={async event => {
+                    if (event.keyCode === 13) {
+                      this.quickAudio(this.submitA);
+                      this.login(this.state.username, this.state.password);
+                    }
+                  }}
                 />
                 <input
                   id="passin"
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={e => this.handlePasswordInput(e.target.value)}
+                  onChange={e => {
+                    this.quickAudio(this.clickA);
+                    this.handlePasswordInput(e.target.value);
+                  }}
+                  onKeyDown={async event => {
+                    if (event.keyCode === 13) {
+                      this.quickAudio(this.submitA);
+                      this.login(this.state.username, this.state.password);
+                    }
+                  }}
                 />
               </div>
-              {/* </div> */}
               <button
                 onClick={() => {
+                  this.quickAudio(this.submitA);
                   this.login(this.state.username, this.state.password);
                 }}
                 id="log"
@@ -232,6 +239,7 @@ class Header extends Component {
               </button>
               <button
                 onClick={() => {
+                  this.quickAudio(this.submitA);
                   this.register(this.state.username, this.state.password);
                 }}
                 id="reg"
