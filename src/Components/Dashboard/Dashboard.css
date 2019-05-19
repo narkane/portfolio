@@ -12,7 +12,7 @@ input {
   cursor: url("../../img/cursor_b.png") 32 32, auto;
 }
 
-.Header {
+.Dashboard {
   /* background: black; */
   /* margin: 100px 0 0 0; */
   padding: 30px 10px 0px 20px;
@@ -110,8 +110,8 @@ input {
 }
 .login input:-webkit-autofill {
 }
-/* .Header input,
-.Header button {
+/* .Dashboard input,
+.Dashboard button {
   -webkit-mask-image: linear-gradient(
     to top,
     rgba(0, 0, 0, 1),

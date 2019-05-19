@@ -8,6 +8,10 @@ class BurgerBox extends Component {
     this.state = {};
   }
 
+  //////////////////////////
+  // RENDER ////////////////
+  //////////////////////////
+
   render() {
     return (
       <>

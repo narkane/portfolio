@@ -5,10 +5,10 @@ import Zoom from "react-reveal/Zoom";
 import { Rnd } from "react-rnd";
 import ReactTooltip from "react-tooltip";
 import "./App.css";
-// import "./Components/Header/Header.css";
+// import "./Components/Dashboard/Dashboard.css";
 import "./Components/ParticleJS/ParticlesContainer.css";
 import music from "./audio/synthetic.mp3";
-import Header from "./Components/Header/Header";
+import Dashboard from "./Components/Dashboard/Dashboard";
 import Intro from "./Components/Intro/Intro";
 // import ParticlesContainer from "./Components/Intro/ParticleJS/ParticlesContainer";
 
@@ -101,7 +101,7 @@ class App extends Component {
         {this.state.bounceHeader && (
           // setTimeout(
           <Zoom bottom id="bounceLogin">
-            <Header
+            <Dashboard
               showDP={this.dp.showDPTeams}
               updateUser={this.dp.updateUser}
               className="nav"

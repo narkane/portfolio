@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { findDOMNode } from "react-dom";
 import introMp4 from "../../video/footagecrate-go-style1.mp4"; //../video/synthwave.mp4";
 import swipeMp3 from "../../audio/slice.mp3";
 
@@ -68,6 +67,10 @@ class Intro extends React.Component {
       }, 1500);
     }
   }
+
+  //////////////////////////
+  // RENDER ////////////////
+  //////////////////////////
 
   render() {
     return (
