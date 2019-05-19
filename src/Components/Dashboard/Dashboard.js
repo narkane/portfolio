@@ -13,9 +13,7 @@ import "./Dashboard.css";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      burger: false
-    };
+    this.state = {};
 
     this.toggleBurg = this.toggleBurg.bind(this);
     this.logout = this.logout.bind(this);
@@ -59,10 +57,6 @@ class Dashboard extends Component {
         console.log("ERROR: " + e);
       });
     // return logged;
-  };
-
-  toggleBurg = () => {
-    this.setState({ burger: !this.state.burger });
   };
 
   //////////////////////////
