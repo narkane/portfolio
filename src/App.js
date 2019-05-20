@@ -109,6 +109,7 @@ class App extends Component {
           </Zoom>
         )}
 
+        <button onClick={this.dp.showDPTeams}>OPEN DP</button>
         {this.dp.state.devpool ? (
           <Rnd
             default={{
