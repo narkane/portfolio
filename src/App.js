@@ -169,10 +169,10 @@ class App extends Component {
                 x
               </button>
             </div>
-            <Bounce bottom>
-              {this.dp.organizeDP()}
-              <img src={windowdp} id="dp-window" draggable="false " />
-            </Bounce>
+            {/* <Bounce bottom> */}
+            {this.dp.organizeDP()}
+            <img src={windowdp} id="dp-window" draggable="false " />
+            {/* </Bounce> */}
           </Rnd>
         ) : (
           this.dp.state.ranInspect &&
