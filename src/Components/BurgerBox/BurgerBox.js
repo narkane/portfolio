@@ -68,7 +68,10 @@ class BurgerBox extends Component {
         {this.state.burger && (
           <div className="dropDown">
             <div className="tabs">
-              <button className="dropButt" onClick={this.props.showDP}>
+              <button
+                className="dropButt"
+                onClick={console.log("props: " + this.props.showDP)}
+              >
                 Devpool List
               </button>
               <button className="dropButt">Teacherpool List</button>

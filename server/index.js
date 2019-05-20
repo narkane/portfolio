@@ -24,9 +24,9 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://sdc.thummel.site"],
-    methods: ["GET", "POST", "PUT"],
-    credentials: true // enable set cookie
+    // origin: ["http://sdc.thummel.site"],
+    // methods: ["GET", "POST", "PUT"],
+    // credentials: true // enable set cookie
   })
 );
 app.use(express.static(`${__dirname}/../build`));
